@@ -25,6 +25,12 @@ public class Player : Entity {
         rigidBody = this.GetComponent<Rigidbody>();
     }
 
+    public void Initialize(int ID)
+    {
+        EntID = ID;
+        Blackboard.setPlayerRef(this, EntID);
+    }
+
     private void FixedUpdate()
     {
         isGrounded = false;
