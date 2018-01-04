@@ -7,20 +7,28 @@ public class CreatePlayer : MonoBehaviour {
     [SerializeField]
     Player playerPrefab;
 
+    //Just a temp bool to force a player to not be created again
+    bool playerCreated = false;
+
     public void CreateNewPlayer()
     {
-        int id = -1;
-        for(int i = 0; i < Blackboard.playerArr.Length; ++i)
+        if (!playerCreated)
         {
-            if(Blackboard.playerArr[i] == null)
+            int id = -1;
+            for (int i = 0; i < Blackboard.playerArr.Length; ++i)
             {
-                id = i;
-                break;
+                if (Blackboard.playerArr[i] == null)
+                {
+                    id = i;
+                    break;
+                }
             }
+            Player playerObj = GameObject.Instantiate(playerPrefab) as Player;
+            playerObj.Initialize(id);
+            playerObj.transform.position = Vector3.zero;
+            playerCreated = true;
         }
-        Player playerObj = GameObject.Instantiate(playerPrefab) as Player;
-        playerObj.Initialize(id);
-        playerObj.transform.position = Vector3.zero;
+
     }
 
 }

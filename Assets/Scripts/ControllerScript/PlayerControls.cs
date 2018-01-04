@@ -20,7 +20,7 @@ public class PlayerControls : MonoBehaviour {
     {
         jump = false;
         if (Input.GetKeyDown(controlMap.attack)){
-
+            player.attack();
         }
         if (Input.GetKeyDown(controlMap.jump))
         {

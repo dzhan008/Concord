@@ -20,9 +20,13 @@ public class Player : Entity {
     private float bufferTime;
     private Rigidbody rigidBody;
 
+    public Stats currentStats;
+
+
     private void Awake()
     {
         rigidBody = this.GetComponent<Rigidbody>();
+        currentStats = new Stats();
     }
 
     public void Initialize(int ID)
@@ -63,4 +67,10 @@ public class Player : Entity {
             rigidBody.AddForce(new Vector3(0f, jumpForce, 0f), ForceMode.Impulse);
         }
     }
+
+    public void attack()
+    {
+        this.GetComponent<Animator>().SetTrigger("attack");
+    }
+
 }

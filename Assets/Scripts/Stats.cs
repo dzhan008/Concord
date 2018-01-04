@@ -26,7 +26,7 @@ public class Stats : MonoBehaviour {
             }
         }
     }
-    private int _Health;
+    private int _Health = 100;
 
     public int ultimateMeter
     {
@@ -55,11 +55,12 @@ public class Stats : MonoBehaviour {
     private int Intelligence;
 
     //Damage
-    private int minDamage;
-    private int maxDamage;
+    private int minDamage = 50;
+    private int maxDamage = 100;
 
 	// Use this for initialization
 	void Start () {
+
 		
 	}
 	
