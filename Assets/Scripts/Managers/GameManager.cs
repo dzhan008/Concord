@@ -6,20 +6,20 @@ public enum GameState
 {
     Menu = 0,
     In_Game,
-    Cutscene
+    Cutscene,
+    MAX
 }
 
 public class GameManager : MonoBehaviour {
 
+    [SerializeField]
+    private Player testPlayer;
+
     GameState state;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    private void Awake()
+    {
+        //To-do Change this to instantiate all players on start so IDs can correctly be set
+        Blackboard.setPlayerRef(testPlayer, 0);
+    }
 }

@@ -5,27 +5,31 @@ using UnityEngine;
 public class Player : Entity {
 
     [SerializeField]
-    float moveSpeed;
+    private float moveSpeed;
     [SerializeField]
-    float jumpForce;
+    private float jumpForce;
 
     [SerializeField]
-    Transform groundCheck;
+    private Transform groundCheck;
     [SerializeField]
-    float groundDepth;
+    private float groundDepth;
     [SerializeField]
-    LayerMask whatIsGround;
+    private float groundRadius;
+    [SerializeField]
+    private LayerMask whatIsGround;
 
     private bool isGrounded;
     private float bufferTime;
     private Rigidbody rigidBody;
+    private Animator anim;
 
-    public Stats currentStats;
+    private Stats currentStats;
 
 
     private void Awake()
     {
         rigidBody = this.GetComponent<Rigidbody>();
+        anim  = this.GetComponent<Animator>();
         currentStats = new Stats();
     }
 
@@ -35,14 +39,12 @@ public class Player : Entity {
         Blackboard.setPlayerRef(this, EntID);
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         isGrounded = false;
-        Collider[] colliders = Physics.OverlapCapsule(groundCheck.position,
-            new Vector3(groundCheck.position.x,
-            groundCheck.position.y - groundDepth,
-            groundCheck.position.z),
-            .1f);
+        Vector3 groundEnd = groundCheck.position;
+        groundEnd.y -= groundDepth;
+        Collider[] colliders = Physics.OverlapCapsule(groundCheck.position, groundEnd, groundRadius);
         for (int i = 0; i < colliders.Length; ++i)
         {
             if(colliders[i].gameObject != this.gameObject)
@@ -51,17 +53,26 @@ public class Player : Entity {
                 break;
             }
         }
+        anim.SetBool("grounded", isGrounded);
     }
 
-    public void move(float dir, float vert, bool jump)
+    //@to-do Clean-up the velocity set, rotation set
+    public void move(Vector2 moveDir, bool jump)
     {
-        rigidBody.velocity = new Vector3(
-            moveSpeed * dir,
-            rigidBody.velocity.y,
-            moveSpeed * vert);
+        Vector3 Dir = new Vector3(moveDir.x, 0.0f, moveDir.y);
+        bool moving = moveDir.magnitude > 0;
+        anim.SetBool("moving", moving);
+        if(moving)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(Dir), .15f);
+        }
 
-        //Add animation control once implemented
-        if(isGrounded && jump)
+        //Scale the movement by movespeed and maintain current y velocity
+        Dir *= moveSpeed;
+        Dir.y = rigidBody.velocity.y;
+        rigidBody.velocity = Dir;
+
+        if (isGrounded && jump && anim.GetBool("grounded"))
         {
             isGrounded = false;
             rigidBody.AddForce(new Vector3(0f, jumpForce, 0f), ForceMode.Impulse);
@@ -70,7 +81,6 @@ public class Player : Entity {
 
     public void attack()
     {
-        this.GetComponent<Animator>().SetTrigger("attack");
+        anim.SetTrigger("attack");
     }
-
 }
