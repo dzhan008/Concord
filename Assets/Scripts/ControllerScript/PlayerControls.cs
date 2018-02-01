@@ -51,10 +51,10 @@ public class PlayerControls : MonoBehaviour {
     {
         setBools    = () => { };
         moveDir     = Vector2.zero;
-        controlMap  = ControlScheme.createControlMap(player.EntID);
         player      = gameObject.GetComponent<Player>();
         rigidBody   = gameObject.GetComponent<Rigidbody>();
         anim        = gameObject.GetComponent<Animator>();
+        controlMap  = ControlScheme.createControlMap(player.EntID);
         maxMoveDir  = Vector2.one.magnitude;
     }
 
