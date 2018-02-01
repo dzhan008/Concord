@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : Entity {
-
-    // The role that the player chooses to be (warrior, mage, )
+// The role that the player chooses to be (warrior, mage, )
     public enum Role
     {
         sword = 0,
@@ -13,6 +11,8 @@ public class Player : Entity {
         dagger = 3,
         bow = 4
     }
+
+public class Player : Entity {
 
     private Stats currentStats;
 
