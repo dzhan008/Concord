@@ -28,4 +28,8 @@ public class Weapon : Item {
         return false;
     }
 	
+    private void OnTriggerEnter(Collider other)
+    {
+        
+    }
 }

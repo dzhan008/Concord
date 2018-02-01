@@ -4,8 +4,17 @@ using UnityEngine;
 
 public class Player : Entity {
 
-    private Stats currentStats;
+    // The role that the player chooses to be (warrior, mage, )
+    public enum Role
+    {
+        sword = 0,
+        maceAndShield = 1,
+        spear = 2,
+        dagger = 3,
+        bow = 4
+    }
 
+    private Stats currentStats;
 
     private void Awake()
     {

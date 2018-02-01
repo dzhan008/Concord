@@ -5,6 +5,7 @@ using UnityEngine;
 /// <summary>
 /// Stats class defining the basic properties of an entity.
 /// </summary>
+[RequireComponent(typeof(Stack))]
 public class Stats : MonoBehaviour {
 
     //Durability and Ultimate Bar
