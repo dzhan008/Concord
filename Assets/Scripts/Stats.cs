@@ -7,28 +7,21 @@ using UnityEngine;
 /// </summary>
 public class Stats : MonoBehaviour {
 
-    //Health and Ultimate Bar
-    public int Health
+    //Durability and Ultimate Bar
+    public float Durability
     {
         get
         {
-            return _Health;
+            return _Durability;
         }
         set
         {
-            if(value < 0)
-            {
-                _Health = 0;
-            }
-            else
-            {
-                _Health = value;
-            }
+            _Durability = Mathf.Clamp(value, 0.0f, 1.0f);
         }
     }
-    private int _Health = 100;
+    private float _Durability = 0.0f;
 
-    public int ultimateMeter
+    public float ultimateMeter
     {
         get
         {
@@ -36,18 +29,10 @@ public class Stats : MonoBehaviour {
         }
         set
         {
-            if(value < 0)
-            {
-                _ultimateMeter = 0;
-            }
-            else
-            {
-                _ultimateMeter = value;
-            }
+            _ultimateMeter = Mathf.Clamp(value, 0.0f, 1.0f);
         }
     }
-    private int _ultimateMeter;
-
+    private float _ultimateMeter = 0.0f;
 
     //General Stats
     private int Strength;
@@ -57,17 +42,6 @@ public class Stats : MonoBehaviour {
     //Damage
     private int minDamage = 50;
     private int maxDamage = 100;
-
-	// Use this for initialization
-	void Start () {
-
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 
     public int CalculateDamage()
     {
