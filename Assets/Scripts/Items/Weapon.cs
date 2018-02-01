@@ -20,9 +20,9 @@ public class Weapon : Item {
     [SerializeField]
     private Animation superAttackAnimation;
 
-    public bool CanWeild(Player weilder) {
-        if (weilder.currentRole == RoleRestriction 
-            && weilder.playerLevel >= minPlayerLevel) {
+    public bool CanWeild(Player wielder) {
+        if (wielder.currentRole == RoleRestriction 
+            && wielder.playerLevel >= minPlayerLevel) {
             return true;
         }
         return false;
