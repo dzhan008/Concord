@@ -14,12 +14,8 @@ using UnityEngine;
 
 public class Player : Entity {
 
-    private Stats currentStats;
-
-    private void Awake()
-    {
-        currentStats = new Stats();
-    }
+    public Role currentRole;
+    public int playerLevel;
 
     public void Initialize(int ID)
     {

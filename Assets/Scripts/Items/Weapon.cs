@@ -22,7 +22,7 @@ public class Weapon : Item {
 
     public bool CanWeild(Player weilder) {
         if (weilder.currentRole == RoleRestriction 
-            && weilder.PlayerLevel >= minPlayerLevel) {
+            && weilder.playerLevel >= minPlayerLevel) {
             return true;
         }
         return false;
