@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody, Animator, Player))]
+[RequireComponent(typeof(Rigidbody), typeof(Animator), typeof(Player))]
 public class PlayerControls : MonoBehaviour {
     //Constants used for Ground Checking and Movement
     private const float groundDepth  = 0.1f;
     private const float groundRadius = 0.1f;
     private const float moveSpeed    = 10.0f;
     private const float jumpSpeed    = 10.0f;
-    private const float maxMoveDir   = Vector2.one.magnitude;
     
     //Delegate for resetting all boolean triggers
     delegate void BooleanDel();
@@ -25,6 +24,7 @@ public class PlayerControls : MonoBehaviour {
     private Rigidbody rigidBody;
     private Animator anim;
     private Vector2 moveDir;
+    private float maxMoveDir;
     private bool jumpFlag, attackFlag, interactFlag;
 
     //Top and Bottom check used in the Ground Check
@@ -55,6 +55,7 @@ public class PlayerControls : MonoBehaviour {
         player      = gameObject.GetComponent<Player>();
         rigidBody   = gameObject.GetComponent<Rigidbody>();
         anim        = gameObject.GetComponent<Animator>();
+        maxMoveDir  = Vector2.one.magnitude;
     }
 
     private void Update()
@@ -76,8 +77,8 @@ public class PlayerControls : MonoBehaviour {
         //Parse Input for button press, set flag then add flag to delegate to be unset after InputParse()
         if (Input.GetKeyDown(controlMap.attack))
         {
-            attack = true;
-            setBools += () => attack = false;
+            attackFlag = true;
+            setBools += () => attackFlag = false;
         }
 
         if (Input.GetKeyDown(controlMap.jump))
@@ -97,7 +98,7 @@ public class PlayerControls : MonoBehaviour {
     private void InputParse()
     {
         move();
-        if (attack)
+        if (attackFlag)
             attack();
 
         //Reset all Input flags
@@ -121,8 +122,8 @@ public class PlayerControls : MonoBehaviour {
 
         if (jumpFlag && anim.GetBool("grounded"))
         {
-            anima.SetBool("grounded", false);
-            rigidBody.velocity.y = jumpSpeed;
+            anim.SetBool("grounded", false);
+            dir.y = jumpSpeed;
         }
 
         rigidBody.velocity = dir;
