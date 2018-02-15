@@ -94,7 +94,7 @@ public class PlayerControls : MonoBehaviour {
         moveDir.y = Input.GetAxis("Vertical" + player.EntID);
         InputParse();
     }
-
+    
     private void InputParse()
     {
         move();

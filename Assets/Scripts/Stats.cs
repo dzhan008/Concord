@@ -5,47 +5,13 @@ using UnityEngine;
 /// <summary>
 /// Stats class defining the basic properties of an entity.
 /// </summary>
-[RequireComponent(typeof(Stack))]
 public class Stats : MonoBehaviour {
 
-    //Durability and Ultimate Bar
-    public float Durability
-    {
-        get
-        {
-            return _Durability;
-        }
-        set
-        {
-            _Durability = Mathf.Clamp(value, 0.0f, 1.0f);
-        }
-    }
-    private float _Durability = 0.0f;
-
-    public float ultimateMeter
-    {
-        get
-        {
-            return _ultimateMeter;
-        }
-        set
-        {
-            _ultimateMeter = Mathf.Clamp(value, 0.0f, 1.0f);
-        }
-    }
-    private float _ultimateMeter = 0.0f;
-
     //General Stats
-    private int Strength;
-    private int Agility;
-    private int Intelligence;
+    public int Strength = 10;
+    public int Defense = 0;
+    public int Agility = 0;
+    public int Intelligence = 10;
+    public Element Element = Element.none;
 
-    //Damage
-    private int minDamage = 50;
-    private int maxDamage = 100;
-
-    public int CalculateDamage()
-    {
-        return Random.Range(minDamage, maxDamage + 1);
-    }
 }
