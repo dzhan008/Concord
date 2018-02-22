@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(Stats))]
 public class Weapon : Item {
 
-    // Weilder must be one of these roles to weild this weapon
+    // Wielder must be one of these roles to wield this weapon
     [SerializeField]
     private Role RoleRestriction;
 
-    // Weilder must be at least this player level to weild this weapon
+    // Wielder must be at least this player level to wield this weapon
     [SerializeField]
     private int minPlayerLevel;
 
@@ -20,16 +21,42 @@ public class Weapon : Item {
     [SerializeField]
     private Animation superAttackAnimation;
 
-    public bool CanWeild(Player wielder) {
+    // Damage should be randomized so this is the percent of randomness by which it can vary.
+    // After all defense calculations.
+    public float damageVariation = 0.10f;
+
+    // How many hits before this weapon breaks
+    [SerializeField]
+    private int hitsToBreak = 100;
+    
+    public int hitsTaken {
+        get {
+            return _hitsTaken;
+        }
+        set {
+            _hitsTaken = Mathf.Clamp(value, 0, hitsToBreak);
+        }
+    }
+    [SerializeField]
+    private int _hitsTaken = 0;
+    
+    public float ultimateMeter {
+        get {
+            return _ultimateMeter;
+        }
+        set {
+            _ultimateMeter = Mathf.Clamp(value, 0f, 1f);
+        }
+    }
+    [SerializeField]
+    private float _ultimateMeter = 0.0f;
+
+    public bool CanWield(Player wielder) {
         if (wielder.currentRole == RoleRestriction 
             && wielder.playerLevel >= minPlayerLevel) {
             return true;
         }
         return false;
     }
-	
-    private void OnTriggerEnter(Collider other)
-    {
-        
-    }
+    
 }

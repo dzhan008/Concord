@@ -1,56 +1,20 @@
 fileFormatVersion: 2
-guid: 3211128069dd1e44db975903a5fe4466
-timeCreated: 1513901070
+guid: 5905f46745bd08c428fa80cb5432e64e
+timeCreated: 1519168533
 licenseType: Free
 ModelImporter:
   serializedVersion: 21
   fileIDToRecycleName:
     100000: //RootNode
-    100002: joint1
-    100004: joint2
-    100006: joint3
-    100008: joint4
-    100010: joint5
-    100012: joint6
-    100014: joint7
-    100016: L_Ankle
-    100018: L_Clavicle
-    100020: L_Elbow
-    100022: L_Knee
-    100024: L_Sholder
-    100026: L_Thigh
-    100028: L_Wrist
-    100030: R_Ankle
-    100032: R_Clavicle
-    100034: R_Elbow
-    100036: R_Knee
-    100038: R_Sholder
-    100040: R_Thigh
-    100042: R_Wrist
+    100002: Character
+    100004: Root2
     400000: //RootNode
-    400002: joint1
-    400004: joint2
-    400006: joint3
-    400008: joint4
-    400010: joint5
-    400012: joint6
-    400014: joint7
-    400016: L_Ankle
-    400018: L_Clavicle
-    400020: L_Elbow
-    400022: L_Knee
-    400024: L_Sholder
-    400026: L_Thigh
-    400028: L_Wrist
-    400030: R_Ankle
-    400032: R_Clavicle
-    400034: R_Elbow
-    400036: R_Knee
-    400038: R_Sholder
-    400040: R_Thigh
-    400042: R_Wrist
+    400002: Character
+    400004: Root2
+    4300000: Character
     7400000: Take 001
     9500000: //RootNode
+    13700000: Character
   materials:
     importMaterials: 1
     materialName: 0
