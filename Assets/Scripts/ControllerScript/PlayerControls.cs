@@ -3,12 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody), typeof(Animator), typeof(Player))]
-public class PlayerControls : MonoBehaviour {
+public class PlayerControls : MonoBehaviour
+{
     //Constants used for Ground Checking and Movement
     private const float groundDepth  = 0.1f;
     private const float groundRadius = 0.1f;
     private const float moveSpeed    = 10.0f;
-    private const float jumpSpeed    = 10.0f;
+    private const float jumpSpeed    = 22.0f;
     
     //Delegate for resetting all boolean triggers
     delegate void BooleanDel();
@@ -62,7 +63,6 @@ public class PlayerControls : MonoBehaviour {
         anim        = gameObject.GetComponent<Animator>();
         controlMap  = ControlScheme.createControlMap(player.EntID);
         maxMoveDir  = Vector2.one.magnitude;
-        Time.timeScale = 0.3f;
     }
 
     private void Update()

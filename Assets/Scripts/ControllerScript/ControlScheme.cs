@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 
-public class ControlScheme : ScriptableObject {
+public class ControlScheme : ScriptableObject
+{
     public KeyCode attack;
     public KeyCode interact;
     public KeyCode start;

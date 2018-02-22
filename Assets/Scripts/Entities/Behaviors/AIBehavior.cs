@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class AIBehavior : MonoBehaviour {
-
-    Enemy.Action del;
+public abstract class AIBehavior : MonoBehaviour
+{
+    protected Enemy.Action actionDel;
     protected abstract void EnemyBehavior();
 
-    public AIBehavior(Enemy.Action del)
+    public void Initialize(Enemy.Action del)
     {
-        this.del = del;
+        actionDel = del;
     }
 }
