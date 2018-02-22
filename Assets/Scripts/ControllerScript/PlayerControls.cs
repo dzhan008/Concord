@@ -27,6 +27,12 @@ public class PlayerControls : MonoBehaviour {
     private float maxMoveDir;
     private bool jumpFlag, attackFlag, interactFlag;
 
+    //Variables checking for multiple inputs in attacks
+    private float timePassed;
+    public bool canAttack = true;
+    private const float THRESHOLD = 0.6f;
+
+
     //Top and Bottom check used in the Ground Check
     private Vector3 groundCheckTop
     {
@@ -56,10 +62,15 @@ public class PlayerControls : MonoBehaviour {
         anim        = gameObject.GetComponent<Animator>();
         controlMap  = ControlScheme.createControlMap(player.EntID);
         maxMoveDir  = Vector2.one.magnitude;
+        Time.timeScale = 0.3f;
     }
 
     private void Update()
     {
+        if(!canAttack)
+        {
+            timePassed += Time.deltaTime;
+        }
         anim.SetBool("grounded", false);
         //Check if there is ground under the player, add whatIsGround as parameter to check layer
         Collider[] colliders = Physics.OverlapCapsule(groundCheckTop, groundCheckBot, groundRadius);
@@ -129,8 +140,32 @@ public class PlayerControls : MonoBehaviour {
         rigidBody.velocity = dir;
     }
 
+    public int comboCounter = 0;
+
     private void attack()
     {
-        anim.SetTrigger("attack");
+        float animationLength = anim.GetCurrentAnimatorStateInfo(0).length;
+        float animationWindow;
+
+        if (animationLength - (THRESHOLD * animationLength) < 0.5)
+        {
+            animationWindow = 0.5f;
+        }
+        else
+        {
+            animationWindow = anim.GetCurrentAnimatorStateInfo(0).length * THRESHOLD;
+        }
+        if(animationWindow < timePassed || comboCounter == 0)
+        {
+            Debug.Log("Attack!");
+            timePassed = 0;
+            comboCounter++;
+            anim.SetInteger("attack", comboCounter);
+            canAttack = false;
+        }   
+        else
+        {
+            Debug.Log("Cannot Attack Yet!");
+        }
     }
 }
