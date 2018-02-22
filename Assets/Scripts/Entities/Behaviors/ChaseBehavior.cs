@@ -10,12 +10,14 @@ public class ChaseBehavior : AIBehavior {
     float chaseRange;
     Vector3 startingPos;
 
-    public ChaseBehavior(Enemy.Action del, GameObject target, NavMeshAgent nav, float range) : base(del)
+    public void Initialize(Enemy.Action del, GameObject target, NavMeshAgent nav, float range)
     {
+        base.Initialize(del);
         chaseTarget = target;
         navAgent    = nav;
         chaseRange  = range;
-        startingPos = transform.position;
+        startingPos = navAgent.gameObject.transform.position;
+        StartCoroutine(chase());
     }
 
     protected override void EnemyBehavior()
@@ -23,12 +25,14 @@ public class ChaseBehavior : AIBehavior {
         
     }
 
-    private void Update()
+    private IEnumerator chase()
     {
-        navAgent.destination = chaseTarget.transform.position;
-        if(Vector3.Distance(transform.position, startingPos) < chaseRange)
+        yield return null;
+        while (Vector3.Distance(navAgent.gameObject.transform.position, startingPos) < chaseRange)
         {
-            actionDel();
+            navAgent.destination = chaseTarget.transform.position;
+            yield return null;
         }
+        actionDel();
     }
 }

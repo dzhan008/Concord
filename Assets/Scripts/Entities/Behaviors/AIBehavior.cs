@@ -7,7 +7,7 @@ public abstract class AIBehavior : MonoBehaviour
     protected Enemy.Action actionDel;
     protected abstract void EnemyBehavior();
 
-    public AIBehavior(Enemy.Action del)
+    public void Initialize(Enemy.Action del)
     {
         actionDel = del;
     }

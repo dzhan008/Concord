@@ -63,7 +63,6 @@ public class PlayerControls : MonoBehaviour
         anim        = gameObject.GetComponent<Animator>();
         controlMap  = ControlScheme.createControlMap(player.EntID);
         maxMoveDir  = Vector2.one.magnitude;
-        Time.timeScale = 0.3f;
     }
 
     private void Update()

@@ -6,8 +6,9 @@ public class AlertBehavior : AIBehavior
 {
     private Trigger.OnTrigger triggerDel;
 
-    public AlertBehavior(Enemy.Action del, Trigger trigger) : base(del)
+    public void Initialize(Enemy.Action del, Trigger trigger)
     {
+        base.Initialize(del);
         triggerDel = EnemyBehavior;
         trigger.Initialize(triggerDel);
     }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.AI;
 
 public class DemonDogEnemy : Enemy
 {
@@ -18,10 +19,14 @@ public class DemonDogEnemy : Enemy
 
     private DemonDogStates state;
 
-    private void Awake()
+    protected void Awake()
     {
+        state = DemonDogStates.sleep;
+        navAgent = GetComponent<NavMeshAgent>();
+        animController = GetComponent<Animator>();
         del = enemyAction;
-        enemyBehavior = new AlertBehavior(del, alertTrigger);
+        enemyBehavior = gameObject.AddComponent<AlertBehavior>();
+        ((AlertBehavior)enemyBehavior).Initialize(del, alertTrigger);
     }
     protected override void enemyAction()
     {
@@ -29,14 +34,18 @@ public class DemonDogEnemy : Enemy
         {
             case DemonDogStates.sleep:
                 {
-                    enemyBehavior = new ChaseBehavior(del, alertTrigger.GetCollided(), navAgent, chaseRange);
+                    Destroy(enemyBehavior);
+                    enemyBehavior = gameObject.AddComponent<ChaseBehavior>();
+                    ((ChaseBehavior)enemyBehavior).Initialize(del, alertTrigger.GetCollided(), navAgent, chaseRange);
                     state = DemonDogStates.chase;
                     animController.SetFloat("speed", 1.0f);
                     break;
                 }
             case DemonDogStates.chase:
                 {
-                    enemyBehavior = new AlertBehavior(del, alertTrigger);
+                    Destroy(enemyBehavior);
+                    enemyBehavior = gameObject.AddComponent<AlertBehavior>();
+                    ((AlertBehavior)enemyBehavior).Initialize(del, alertTrigger);
                     state = DemonDogStates.sleep;
                     animController.SetFloat("speed", 0.0f);
                     break;

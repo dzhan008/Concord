@@ -11,11 +11,5 @@ public abstract class Enemy : Entity
     protected NavMeshAgent navAgent;
     protected Animator animController;
 
-    protected Enemy()
-    {
-        navAgent = GetComponent<NavMeshAgent>();
-        animController = GetComponent<Animator>();
-    }
-
     protected abstract void enemyAction();
 }

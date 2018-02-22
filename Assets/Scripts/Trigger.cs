@@ -14,8 +14,11 @@ public class Trigger : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        del();
-        go = other.gameObject;
+        if(other.GetComponent<Entity>() != null)
+        {
+            go = other.gameObject;
+            del();
+        }
     }
     public GameObject GetCollided()
     {
