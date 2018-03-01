@@ -1,91 +1,64 @@
 fileFormatVersion: 2
-guid: bd34b798a24b2b143affae181f81c282
-timeCreated: 1519168409
+guid: 83d79f32df18a9f409084fa37ceb38ed
+timeCreated: 1519273074
 licenseType: Free
 ModelImporter:
-  serializedVersion: 21
+  serializedVersion: 22
   fileIDToRecycleName:
-    100000: Character
-    100002: //RootNode
-    100004: Head
-    100006: Hips
-    100008: joint1
-    100010: joint2
-    100012: L_Ankle
-    100014: L_Ball
-    100016: L_Clavicle
-    100018: L_Elbow
-    100020: L_Hand_Fingers
-    100022: L_Hand_Knuckles
-    100024: L_hip
-    100026: L_Knee
-    100028: L_Sholder
-    100030: L_Thumb1
-    100032: L_Thumb2
-    100034: L_Toe
-    100036: L_Wrist
-    100038: Neck
-    100040: R_Ankle
-    100042: R_Ball
-    100044: R_Clavicle
-    100046: R_Elbow
-    100048: R_Hand_Fingers
-    100050: R_Hand_Knuckles
-    100052: R_hip
-    100054: R_Knee
-    100056: R_Sholder
-    100058: R_Thumb1
-    100060: R_Thumb2
-    100062: R_Toe
-    100064: R_Wrist
-    100066: Root2
-    100068: Spine_05
-    100070: Spine_06
-    100072: Top
-    400000: Character
-    400002: //RootNode
-    400004: Head
-    400006: Hips
-    400008: joint1
-    400010: joint2
-    400012: L_Ankle
-    400014: L_Ball
-    400016: L_Clavicle
-    400018: L_Elbow
-    400020: L_Hand_Fingers
-    400022: L_Hand_Knuckles
-    400024: L_hip
-    400026: L_Knee
-    400028: L_Sholder
-    400030: L_Thumb1
-    400032: L_Thumb2
-    400034: L_Toe
-    400036: L_Wrist
-    400038: Neck
-    400040: R_Ankle
-    400042: R_Ball
-    400044: R_Clavicle
-    400046: R_Elbow
-    400048: R_Hand_Fingers
-    400050: R_Hand_Knuckles
-    400052: R_hip
-    400054: R_Knee
-    400056: R_Sholder
-    400058: R_Thumb1
-    400060: R_Thumb2
-    400062: R_Toe
-    400064: R_Wrist
-    400066: Root2
-    400068: Spine_05
-    400070: Spine_06
-    400072: Top
-    4300000: Character
+    100000: //RootNode
+    100002: Head
+    100004: Hips
+    100006: joint1
+    100008: joint2
+    100010: L_Ankle
+    100012: L_Ball
+    100014: L_Clavicle
+    100016: L_Elbow
+    100018: L_hip
+    100020: L_Knee
+    100022: L_Sholder
+    100024: Neck
+    100026: R_Ankle
+    100028: R_Ball
+    100030: R_Clavicle
+    100032: R_Elbow
+    100034: R_hip
+    100036: R_Knee
+    100038: R_Sholder
+    100040: Root2
+    100042: Spine_05
+    100044: Spine_06
+    400000: //RootNode
+    400002: Head
+    400004: Hips
+    400006: joint1
+    400008: joint2
+    400010: L_Ankle
+    400012: L_Ball
+    400014: L_Clavicle
+    400016: L_Elbow
+    400018: L_hip
+    400020: L_Knee
+    400022: L_Sholder
+    400024: Neck
+    400026: R_Ankle
+    400028: R_Ball
+    400030: R_Clavicle
+    400032: R_Elbow
+    400034: R_hip
+    400036: R_Knee
+    400038: R_Sholder
+    400040: Root2
+    400042: Spine_05
+    400044: Spine_06
+    7400000: Take 001
     9500000: //RootNode
-    13700000: Character
+  externalObjects: {}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 1
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -98,6 +71,7 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -122,6 +96,8 @@ ModelImporter:
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
