@@ -13,7 +13,7 @@ public class Camera : MonoBehaviour {
         offset = this.transform.position;
     }
 
-    void Update () {
+    void FixedUpdate () {
         center = Vector3.zero;
         playerCount = 0;
         for(int i = 0; i < Blackboard.playerArr.Length; ++i)
@@ -24,8 +24,10 @@ public class Camera : MonoBehaviour {
                 playerCount++;
             }
         }
-
-        if(playerCount != 0)
+        
+        if(playerCount != 0) {
             this.transform.position = offset + (center / playerCount);
-	}
+        }
+    
+    }
 }
