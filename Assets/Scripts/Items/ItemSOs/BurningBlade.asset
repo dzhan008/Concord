@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6834c8ff2a7eef844a52218a05d12072, type: 3}
+  m_Name: BurningBlade
+  m_EditorClassIdentifier: 
+  MySprite: {fileID: 21300000, guid: 32d44a5b1d8a48b42b36e93ea82ceed6, type: 3}
+  MyPrefab: {fileID: 1303589122562896, guid: e7187a7b38af8d445ac7cf4d7c0d57c4, type: 2}

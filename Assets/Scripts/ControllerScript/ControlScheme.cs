@@ -6,6 +6,10 @@ public class ControlScheme : ScriptableObject
     public KeyCode interact;
     public KeyCode start;
     public KeyCode jump;
+    public KeyCode InventoryScrollLeft;
+    public KeyCode InventoryScrollRight;
+    public KeyCode InventoryUseItem;
+    public KeyCode InventoryDiscard;
 
     public static ControlScheme createControlMap(int entID)
     {
@@ -17,6 +21,10 @@ public class ControlScheme : ScriptableObject
                 controls.interact = KeyCode.E;
                 controls.start = KeyCode.Escape;
                 controls.jump = KeyCode.Space;
+                controls.InventoryScrollLeft = KeyCode.R;
+                controls.InventoryScrollRight = KeyCode.F;
+                controls.InventoryUseItem = KeyCode.Q;
+                controls.InventoryDiscard = KeyCode.Z;
                 break;
             case 1:
                 controls.attack = KeyCode.Joystick1Button1;

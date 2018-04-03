@@ -20,10 +20,11 @@ public class PlayerControls : MonoBehaviour
     [SerializeField]
     private LayerMask whatIsGround;
 
-    private Player player;
+    private Player player;          // Set in Awake()/Start()
     private ControlScheme controlMap;
     private Rigidbody rigidBody;
     private Animator anim;
+    public PlayerInfo MyPlayerInfo; // Set by UIManager
     private Vector2 moveDir;
     private float maxMoveDir;
     private bool jumpFlag, attackFlag, interactFlag;
@@ -54,7 +55,8 @@ public class PlayerControls : MonoBehaviour
         }
     }
 
-    private void Awake()
+    // This should occur after Player's Awake()
+    private void Start()
     {
         setBools    = () => { };
         moveDir     = Vector2.zero;
@@ -97,6 +99,19 @@ public class PlayerControls : MonoBehaviour
             jumpFlag = true;
             setBools += () => jumpFlag = false;
         }
+        
+        if (Input.GetKeyDown(controlMap.InventoryScrollLeft)) {
+            MyPlayerInfo.ScrollLeft();
+        }
+
+        if (Input.GetKeyDown(controlMap.InventoryScrollRight)) {
+            MyPlayerInfo.ScrollRight();
+        }
+
+        if (Input.GetKeyDown(controlMap.InventoryUseItem)) {
+            MyPlayerInfo.UseItem();
+        }
+
     }
 
     private void FixedUpdate()

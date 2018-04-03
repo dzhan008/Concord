@@ -226,13 +226,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baebc334a4d936742a78748e93a0aa3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  held: 0
+  ItemData: {fileID: 11400000, guid: e69a1fedafc880d45bdf65579924a780, type: 2}
   RoleRestriction: 0
   minPlayerLevel: 0
   normalAttackAnimation: {fileID: 0}
   superAttackAnimation: {fileID: 0}
-  _Durability: 1
-  _ultimateMeter: 0
   damageVariation: 0.1
+  hitsToBreak: 100
+  _hitsTaken: 0
+  _ultimateMeter: 0
 --- !u!135 &135603449705982362
 SphereCollider:
   m_ObjectHideFlags: 1

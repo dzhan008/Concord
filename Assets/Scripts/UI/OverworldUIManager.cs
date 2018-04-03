@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OverworldUI : MonoBehaviour {
+public class OverworldUIManager : MonoBehaviour {
 
 	[SerializeField] private RectTransform UpperPanel;
 	[SerializeField] private PlayerInfo PlayerInfoPrefab;
@@ -12,10 +12,16 @@ public class OverworldUI : MonoBehaviour {
 	private float panel_height = 0; // Set at Start()
 	private float MultiplayerSpacing = 0; // Set at Start()
 	private float InventoryPanel_Ratio = 0.7f;
+	private int PlayerInfoCount = 1;
 
 	public void AddPlayerInfo(Player new_player) {
 		UpperPanel.GetComponent<HorizontalLayoutGroup>().spacing = MultiplayerSpacing;
-		Instantiate(PlayerInfoPrefab, UpperPanel).MyPlayer = new_player;
+		PlayerInfo newPlayerInfo = Instantiate(PlayerInfoPrefab, UpperPanel);
+		newPlayerInfo.MyPlayer = new_player;
+		new_player.MyPlayerInfo = newPlayerInfo;
+		new_player.GetComponent<PlayerControls>().MyPlayerInfo = newPlayerInfo;
+		new_player.CheckHeldInventory();
+		PlayerInfoCount++;
 	}
 	
 	public void RemovePlayerInfo(int removee_EntID) {
@@ -26,6 +32,7 @@ public class OverworldUI : MonoBehaviour {
 				break;
 			}
 		}
+		PlayerInfoCount--;
 	}
 
 	private void Start() {
@@ -41,8 +48,20 @@ public class OverworldUI : MonoBehaviour {
 		hz_group.spacing = 0;
 		MultiplayerSpacing = (Screen.width-(4*info_width)-(2*panel_padding)) / 3;
 		Canvas.ForceUpdateCanvases();
-
-		if (!PlayerInfoPrefab) PlayerInfoPrefab = transform.GetComponentInChildren<PlayerInfo>();
+		
+		// If the prefab is not set, get the first default PlayerInfo object on screen and modify it
+		// All additional PlayerInfo objects to be instantiated will be a copy of this first one
+		if (!PlayerInfoPrefab) {
+			PlayerInfoPrefab = transform.GetComponentInChildren<PlayerInfo>();
+			if (Blackboard.playerArr.Length > 0) {
+				Player first_player = Blackboard.playerArr[0];
+				PlayerInfoPrefab.MyPlayer = first_player;
+				PlayerInfoPrefab.MyInventory = first_player.MyInventory;
+				first_player.MyPlayerInfo = PlayerInfoPrefab;
+				first_player.GetComponent<PlayerControls>().MyPlayerInfo = PlayerInfoPrefab;
+				first_player.CheckHeldInventory();
+			}
+		}
 		RectTransform pif_rt = PlayerInfoPrefab.GetComponent<RectTransform>();
 		pif_rt.sizeDelta = new Vector2(info_width, pif_rt.sizeDelta.y);
 		float face_icon_width = pif_rt.sizeDelta.y;
@@ -60,13 +79,39 @@ public class OverworldUI : MonoBehaviour {
 		PlayerInfoPrefab.LeftArrow.sizeDelta = temp_v2;
 		PlayerInfoPrefab.ItemFrame.sizeDelta = temp_v2;
 		PlayerInfoPrefab.RightArrow.sizeDelta = temp_v2;
+
+		PlayerInfoPrefab.Message.localPosition = new Vector2(PlayerInfoPrefab.Message.localPosition.x, PlayerInfoPrefab.InventoryPanel.sizeDelta.y * 1.3f);
+		// Make alert message half of Inventory's height
+		PlayerInfoPrefab.Message.sizeDelta = 
+			new Vector2(PlayerInfoPrefab.InventoryPanel.sizeDelta.x, PlayerInfoPrefab.InventoryPanel.sizeDelta.y * 0.5f);
+		Canvas.ForceUpdateCanvases();
 	}
 	
+	/*
+	public PlayerInfo testFirstPlayerInfo;
+	public RectTransform Mess;
 	// TODO: REMOVE THIS DEMO
-	public void Update() {
-		if (Input.GetKeyDown(KeyCode.N)) {
-			AddPlayerInfo(null);
+	public void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.N)) 
+		{
+			if (PlayerInfoCount < 4) {
+				AddPlayerInfo(null);
+			}
+		}
+
+		if (Input.GetKeyDown(KeyCode.M)) 
+		{
+			if (testFirstPlayerInfo.InventoryMessageAnimator.GetCurrentAnimatorStateInfo(0).IsName("InventoryMessageHidden"))
+        	{
+            	Mess.GetComponentInChildren<Text>().text = "Inv Full";
+            	testFirstPlayerInfo.InventoryMessageAnimator.SetTrigger("DisplayInventoryMessage");
+        	}
+			else {
+				print("sad life");
+			}
 		}
 	}
+	*/
 	
 }

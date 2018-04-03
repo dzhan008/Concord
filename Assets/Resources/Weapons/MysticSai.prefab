@@ -226,6 +226,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baebc334a4d936742a78748e93a0aa3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  held: 0
+  ItemData: {fileID: 11400000, guid: b4e6e08bcb59c8e469153de7364d7582, type: 2}
   RoleRestriction: 3
   minPlayerLevel: 10
   normalAttackAnimation: {fileID: 0}

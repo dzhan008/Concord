@@ -38,4 +38,5 @@ public static class Blackboard {
     public static float GetElementMultiplier(Element attacker, Element defender) {
         return ElementChart.GetValue((int) attacker, (int) defender);
     }
+
 }
