@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-[RequireComponent(typeof(Stats))]
 public class Weapon : Item {
 
     // Wielder must be one of these roles to wield this weapon

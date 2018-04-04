@@ -54,7 +54,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4798759709484978}
-  - component: {fileID: 114785959039785118}
   - component: {fileID: 114296880436002264}
   - component: {fileID: 65480104169322268}
   - component: {fileID: 65798202287571876}
@@ -233,22 +232,6 @@ MonoBehaviour:
   hitsToBreak: 100
   _hitsTaken: 0
   _ultimateMeter: 0
---- !u!114 &114785959039785118
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1888951534559304}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4a0c1aefd87679408956994b4efe356, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Strength: 20
-  Defense: 20
-  Agility: 10
-  Intelligence: 80
-  Element: 4
 --- !u!135 &135327001686804194
 SphereCollider:
   m_ObjectHideFlags: 1

@@ -54,7 +54,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4590359991526880}
-  - component: {fileID: 114036804582148246}
   - component: {fileID: 114309487549224772}
   - component: {fileID: 65536093372550144}
   m_Layer: 0
@@ -199,22 +198,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.12925148, y: 0.71173155, z: 0.07442498}
   m_Center: {x: 0.0018119812, y: 0.46710092, z: 0.0019694567}
---- !u!114 &114036804582148246
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1585360040508854}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4a0c1aefd87679408956994b4efe356, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Strength: 60
-  Defense: 20
-  Agility: 10
-  Intelligence: 10
-  Element: 3
 --- !u!114 &114309487549224772
 MonoBehaviour:
   m_ObjectHideFlags: 1

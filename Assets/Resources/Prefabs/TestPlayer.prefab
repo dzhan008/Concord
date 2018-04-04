@@ -312,7 +312,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4556733510950072}
-  - component: {fileID: 114188589582779054}
   - component: {fileID: 114781676246020570}
   - component: {fileID: 65841449144923208}
   m_Layer: 0
@@ -1020,24 +1019,10 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 0
   MyPlayerInfo: {fileID: 0}
+  knockBackForce: 1
+  knockBackTime: 1
+  knockBackCounter: 0
   canAttack: 1
-  comboCounter: 0
---- !u!114 &114188589582779054
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1686818375109082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4a0c1aefd87679408956994b4efe356, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Strength: 60
-  Defense: 20
-  Agility: 10
-  Intelligence: 10
-  Element: 3
 --- !u!114 &114644388327654580
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1055,6 +1040,7 @@ MonoBehaviour:
   WeaponGrip: {fileID: 4626259808481030}
   MyInventory: {fileID: 0}
   MyPlayerInfo: {fileID: 0}
+  playerStats: {fileID: 0}
 --- !u!114 &114781676246020570
 MonoBehaviour:
   m_ObjectHideFlags: 1

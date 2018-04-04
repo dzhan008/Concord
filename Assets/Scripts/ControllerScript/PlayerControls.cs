@@ -6,11 +6,11 @@ using UnityEngine;
 public class PlayerControls : MonoBehaviour
 {
     //Constants used for Ground Checking and Movement
-    private const float groundDepth  = 0.1f;
+    private const float groundDepth = 0.1f;
     private const float groundRadius = 0.1f;
-    private const float moveSpeed    = 10.0f;
-    private const float jumpSpeed    = 22.0f;
-    
+    private const float moveSpeed = 10.0f;
+    private const float jumpSpeed = 10.0f;
+
     //Delegate for resetting all boolean triggers
     delegate void BooleanDel();
     BooleanDel setBools;
@@ -20,19 +20,39 @@ public class PlayerControls : MonoBehaviour
     [SerializeField]
     private LayerMask whatIsGround;
 
-    private Player player;          // Set in Awake()/Start()
+    private Player player;
     private ControlScheme controlMap;
     private Rigidbody rigidBody;
     private Animator anim;
     public PlayerInfo MyPlayerInfo; // Set by UIManager
-    private Vector2 moveDir;
+    private Vector3 moveDir;
     private float maxMoveDir;
     private bool jumpFlag, attackFlag, interactFlag;
+
+    //Knockback stuff
+    [SerializeField]
+    private float knockBackForce = 1;
+    [SerializeField]
+    public float knockBackTime = 1;
+    private float knockBackCounter;
 
     //Variables checking for multiple inputs in attacks
     private float timePassed;
     public bool canAttack = true;
+    private const float MIN_REACTION_TIME = 0.5f;
     private const float THRESHOLD = 0.6f;
+    public int comboCounter
+    {
+        get
+        {
+            return _comboCounter;
+        }
+        set
+        {
+            _comboCounter = value;
+        }
+    }
+    private int _comboCounter = 0;
 
 
     //Top and Bottom check used in the Ground Check
@@ -55,21 +75,20 @@ public class PlayerControls : MonoBehaviour
         }
     }
 
-    // This should occur after Player's Awake()
     private void Start()
     {
-        setBools    = () => { };
-        moveDir     = Vector2.zero;
-        player      = gameObject.GetComponent<Player>();
-        rigidBody   = gameObject.GetComponent<Rigidbody>();
-        anim        = gameObject.GetComponent<Animator>();
-        controlMap  = ControlScheme.createControlMap(player.EntID);
-        maxMoveDir  = Vector2.one.magnitude;
+        setBools = () => { };
+        moveDir = Vector3.zero;
+        player = gameObject.GetComponent<Player>();
+        rigidBody = gameObject.GetComponent<Rigidbody>();
+        anim = gameObject.GetComponent<Animator>();
+        controlMap = ControlScheme.createControlMap(player.EntID);
+        maxMoveDir = Vector2.one.magnitude;
     }
 
     private void Update()
     {
-        if(!canAttack)
+        if (!canAttack)
         {
             timePassed += Time.deltaTime;
         }
@@ -99,16 +118,19 @@ public class PlayerControls : MonoBehaviour
             jumpFlag = true;
             setBools += () => jumpFlag = false;
         }
-        
-        if (Input.GetKeyDown(controlMap.InventoryScrollLeft)) {
+
+        if (Input.GetKeyDown(controlMap.InventoryScrollLeft))
+        {
             MyPlayerInfo.ScrollLeft();
         }
 
-        if (Input.GetKeyDown(controlMap.InventoryScrollRight)) {
+        if (Input.GetKeyDown(controlMap.InventoryScrollRight))
+        {
             MyPlayerInfo.ScrollRight();
         }
 
-        if (Input.GetKeyDown(controlMap.InventoryUseItem)) {
+        if (Input.GetKeyDown(controlMap.InventoryUseItem))
+        {
             MyPlayerInfo.UseItem();
         }
 
@@ -116,11 +138,18 @@ public class PlayerControls : MonoBehaviour
 
     private void FixedUpdate()
     {
-        moveDir.x = Input.GetAxis("Horizontal" + player.EntID);
-        moveDir.y = Input.GetAxis("Vertical" + player.EntID);
+        if (knockBackCounter <= 0)
+        {
+            moveDir.x = Input.GetAxis("Horizontal" + player.EntID);
+            moveDir.z = Input.GetAxis("Vertical" + player.EntID);
+        }
+        else
+        {
+            knockBackCounter -= Time.deltaTime;
+        }
         InputParse();
     }
-    
+
     private void InputParse()
     {
         move();
@@ -135,9 +164,9 @@ public class PlayerControls : MonoBehaviour
 
     private void move()
     {
-        Vector3 dir = new Vector3(moveDir.x, 0.0f, moveDir.y);
+        Vector3 dir = new Vector3(moveDir.x, 0.0f, moveDir.z);
         anim.SetFloat("speed", moveDir.magnitude / maxMoveDir);
-        if (anim.GetFloat("speed") > 0)
+        if (anim.GetFloat("speed") > 0 && knockBackCounter <= 0)
         {
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), .15f);
         }
@@ -155,32 +184,39 @@ public class PlayerControls : MonoBehaviour
         rigidBody.velocity = dir;
     }
 
-    public int comboCounter = 0;
-
     private void attack()
     {
         float animationLength = anim.GetCurrentAnimatorStateInfo(0).length;
         float animationWindow;
-
-        if (animationLength - (THRESHOLD * animationLength) < 0.5)
+        //Checks for animations that are very small
+        if (animationLength - (THRESHOLD * animationLength) < MIN_REACTION_TIME)
         {
-            animationWindow = 0.5f;
+            animationWindow = MIN_REACTION_TIME;
         }
         else
         {
             animationWindow = anim.GetCurrentAnimatorStateInfo(0).length * THRESHOLD;
-        }
-        if(animationWindow < timePassed || comboCounter == 0)
+        } //Checks if the player can attack after it reaches a certain point in the animation.
+        if (animationWindow < timePassed || comboCounter == 0)
         {
             Debug.Log("Attack!");
             timePassed = 0;
             comboCounter++;
             anim.SetInteger("attack", comboCounter);
             canAttack = false;
-        }   
+        }
         else
         {
             Debug.Log("Cannot Attack Yet!");
         }
+    }
+
+    public void KnockBack(Vector3 dir)
+    {
+        Debug.Log("Knocking Back!");
+        knockBackCounter = knockBackTime;
+        moveDir = knockBackForce * dir;
+        //Attempt to test knockback on y-axis
+        //moveDir = knockBackForce * (Quaternion.AngleAxis(-30, Vector3.forward) * dir);
     }
 }

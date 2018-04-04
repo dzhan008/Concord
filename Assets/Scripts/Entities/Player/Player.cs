@@ -19,14 +19,44 @@ public class Player : Entity {
     public Transform WeaponGrip;
     public Inventory MyInventory;
     public PlayerInfo MyPlayerInfo;
+    [SerializeField]
+    private Stats playerStats;
+
+    //Player's Health
+    private int maxHealth;
+    public int health
+    {
+        get
+        {
+            return _health;
+        }
+        set
+        {
+            _health = Mathf.Clamp(value, 0, maxHealth);
+            if (_health == 0)
+            {
+                Destroy(gameObject);
+            }
+        }
+    }
+
+    private int _health = 0;
 
     // TODO: Remove this test when game starts
-    public void Awake() {
+    public void Awake()
+    {
         Initialize(0);
     }
 
-    public void CheckHeldInventory() {
-        if (WeaponGrip) {
+    private void Start()
+    {
+        maxHealth = _health = playerStats.Health;
+    }
+
+    public void CheckHeldInventory()
+    {
+        if (WeaponGrip)
+        {
             Item held_item = WeaponGrip.GetComponentInChildren<Item>();
             if (held_item)
             {
@@ -57,7 +87,7 @@ public class Player : Entity {
     }
 
     public void UseItem() {
-        Debug.Log("Used: "+MyInventory.CurrentItem);
+        Debug.Log("Used: "+ MyInventory.CurrentItem);
         // If it's a weapon, equip it
         Weapon use_weapon = MyInventory.CurrentItem.MyPrefab.GetComponent<Weapon>();
         if (use_weapon) {
