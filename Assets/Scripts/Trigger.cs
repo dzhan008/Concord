@@ -1,23 +1,23 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class Trigger : MonoBehaviour
 {
-    public delegate void OnTrigger();
-    private OnTrigger del;
+    Action action;
     private GameObject go;
 
-    public void Initialize(OnTrigger del)
+    public void Initialize(Action action)
     {
-        this.del = del;
+        this.action = action;
     }
     private void OnTriggerEnter(Collider other)
     {
         if(other.GetComponent<Entity>() != null)
         {
             go = other.gameObject;
-            del();
+            action();
         }
     }
     public GameObject GetCollided()

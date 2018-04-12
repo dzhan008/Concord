@@ -2,37 +2,60 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using System;
 
 public class ChaseBehavior : AIBehavior {
 
-    GameObject chaseTarget;
     NavMeshAgent navAgent;
-    float chaseRange;
+    Action action, reset;
+    Transform chaseTarget;
     Vector3 startingPos;
+    float chaseRange;
+    float attackRange;
 
-    public void Initialize(Enemy.Action del, GameObject target, NavMeshAgent nav, float range)
+    public void Initialize(Action action, Action reset, NavMeshAgent navAgent, float attackRange, float chaseRange, Transform chaseTarget)
     {
-        base.Initialize(del);
-        chaseTarget = target;
-        navAgent    = nav;
-        chaseRange  = range;
-        startingPos = navAgent.gameObject.transform.position;
+        this.action      = action;
+        this.reset       = reset;
+        this.navAgent    = navAgent;
+        this.startingPos = navAgent.gameObject.transform.position;
+        this.chaseRange  = chaseRange;
+        this.attackRange = attackRange;
+        this.chaseTarget = chaseTarget;
         StartCoroutine(chase());
-    }
-
-    protected override void EnemyBehavior()
-    {
-        
     }
 
     private IEnumerator chase()
     {
         yield return null;
-        while (Vector3.Distance(navAgent.gameObject.transform.position, startingPos) < chaseRange)
+
+        while(Vector3.Distance(startingPos, gameObject.transform.position) < chaseRange)
         {
-            navAgent.destination = chaseTarget.transform.position;
+            if(Vector3.Distance(gameObject.transform.position, chaseTarget.position) < attackRange)
+            {
+                action();
+            }
+            if (chaseTarget.hasChanged)
+            {
+                navAgent.SetDestination(chaseTarget.position);
+            }
+
             yield return null;
         }
-        actionDel();
+        StartCoroutine(returnToPosition());
     }
+
+    private IEnumerator returnToPosition()
+    {
+        yield return null;
+
+        navAgent.SetDestination(startingPos);
+        while(Vector3.Distance(gameObject.transform.position, startingPos) > .05f)
+        {
+            yield return null;
+        }
+
+        reset();
+    }
+    
 }
