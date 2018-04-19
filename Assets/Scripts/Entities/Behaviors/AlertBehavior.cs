@@ -1,20 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using System;
 
 public class AlertBehavior : AIBehavior
 {
-    private Trigger.OnTrigger triggerDel;
 
-    public void Initialize(Enemy.Action del, Trigger trigger)
+    public void Initialize(Trigger trigger, Action triggerAction)
     {
-        base.Initialize(del);
-        triggerDel = EnemyBehavior;
-        trigger.Initialize(triggerDel);
-    }
-
-    protected override void EnemyBehavior()
-    {
-        actionDel();
+        trigger.Initialize(triggerAction);
     }
 }

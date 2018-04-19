@@ -12,8 +12,6 @@ public enum GameState
 
 public class GameManager : MonoBehaviour {
 
-    Trigger.OnTrigger triggerHit;
-
     [SerializeField]
     private Player testPlayer;
 
@@ -27,7 +25,6 @@ public class GameManager : MonoBehaviour {
 
     private void Awake()
     {
-        triggerHit = endLevel;
         //endingPos.Initialize(triggerHit);
         //testPlayer.transform.position = startingPos.position;
         //To-do Change this to instantiate all players on start so IDs can correctly be set
