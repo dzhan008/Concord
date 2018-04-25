@@ -12,8 +12,6 @@ public abstract class Enemy : Entity
     protected NavMeshAgent navAgent;
     protected Animator animController;
 
-    protected abstract void enemyAction();
-
     /*Stats*/
     [SerializeField]
     private EnemyStats stats;

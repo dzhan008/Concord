@@ -3,7 +3,7 @@ guid: 2585823b7193646439199b210af75479
 timeCreated: 1518063522
 licenseType: Free
 ModelImporter:
-  serializedVersion: 21
+  serializedVersion: 22
   fileIDToRecycleName:
     100000: Armature
     100002: Collar
@@ -107,10 +107,17 @@ ModelImporter:
     13700006: Torus
     13700008: Torus.006
     13700010: Torus.007
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: No Name
+    second: {fileID: 2100000, guid: 8e63ea8d0b78c524ea1127867014ccbb, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
     materialSearch: 1
+    materialLocation: 0
   animations:
     legacyGenerateAnimations: 4
     bakeSimulation: 0
@@ -123,6 +130,7 @@ ModelImporter:
     animationImportWarnings: 
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -190,7 +198,7 @@ ModelImporter:
     - serializedVersion: 16
       name: Walk
       takeName: Armature|ArmatureAction
-      firstFrame: 140
+      firstFrame: 160
       lastFrame: 200
       wrapMode: 0
       orientationOffsetY: 0
@@ -231,6 +239,8 @@ ModelImporter:
     optimizeMeshForGPU: 1
     keepQuads: 0
     weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
     secondaryUVAngleDistortion: 8
     secondaryUVAreaDistortion: 15.000001
     secondaryUVHardAngle: 88
