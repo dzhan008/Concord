@@ -35,7 +35,8 @@ public class Player : Entity {
             _health = Mathf.Clamp(value, 0, maxHealth);
             if (_health == 0)
             {
-                Destroy(gameObject);
+                //Destroy(gameObject);
+                Debug.Log("Dead");
             }
         }
     }
