@@ -46,7 +46,7 @@ public class Player : Entity {
     // TODO: Remove this test when game starts
     public void Awake()
     {
-        Initialize(0);
+        //Initialize(0);
     }
 
     private void Start()
