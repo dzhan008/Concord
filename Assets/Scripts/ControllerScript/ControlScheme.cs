@@ -16,6 +16,9 @@ public class ControlScheme : ScriptableObject
         ControlScheme controls = ScriptableObject.CreateInstance<ControlScheme>();
         switch (entID)
         {
+            case -1:
+                controls.jump = KeyCode.RightShift;
+                break;
             case 0:
                 controls.attack = KeyCode.Mouse0;
                 controls.interact = KeyCode.E;
@@ -30,6 +33,9 @@ public class ControlScheme : ScriptableObject
                 controls.attack = KeyCode.Joystick1Button1;
                 controls.interact = KeyCode.Joystick1Button0;
                 controls.start = KeyCode.Joystick1Button9;
+                break;
+            case 2:
+                controls.attack = KeyCode.Joystick2Button1;
                 break;
             default:
                 break;
