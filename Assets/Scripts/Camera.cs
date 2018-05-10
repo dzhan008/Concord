@@ -2,11 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Camera : MonoBehaviour {
+public class Camera : Singleton<Camera> {
 	// Update is called once per frame
     Vector3 center = Vector3.zero;
     Vector3 offset;
     int playerCount = 0;
+    [SerializeField]
+    bool canMove = true;
 
     private void Awake()
     {
@@ -14,20 +16,26 @@ public class Camera : MonoBehaviour {
     }
 
     void FixedUpdate () {
-        center = Vector3.zero;
-        playerCount = 0;
-        for(int i = 0; i < Blackboard.playerArr.Length; ++i)
+        if(canMove)
         {
-            if(Blackboard.playerArr[i] != null)
+            center = Vector3.zero;
+            playerCount = 0;
+            for (int i = 0; i < Blackboard.playerArr.Length; ++i)
             {
-                center += Blackboard.playerArr[i].transform.position;
-                playerCount++;
+                if (Blackboard.playerArr[i] != null)
+                {
+                    center += Blackboard.playerArr[i].transform.position;
+                    playerCount++;
+                }
+            }
+
+            if (playerCount != 0)
+            {
+                this.transform.position = new Vector3(
+                    (offset + (center / playerCount)).x, 
+                    transform.position.y, 
+                    transform.position.z);
             }
         }
-        
-        if(playerCount != 0) {
-            this.transform.position = offset + (center / playerCount);
-        }
-    
     }
 }

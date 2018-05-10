@@ -35,7 +35,8 @@ public class Player : Entity {
             _health = Mathf.Clamp(value, 0, maxHealth);
             if (_health == 0)
             {
-                Destroy(gameObject);
+                //Destroy(gameObject);
+                Debug.Log("Dead");
             }
         }
     }
@@ -45,7 +46,7 @@ public class Player : Entity {
     // TODO: Remove this test when game starts
     public void Awake()
     {
-        Initialize(0);
+        //Initialize(0);
     }
 
     private void Start()
