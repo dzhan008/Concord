@@ -79,11 +79,7 @@ public class PlayerInfo : MonoBehaviour {
     }
 
     private void Update() {
-        // TODO REMOVE THIS DEMO
-            HPMeter.fillAmount = .5f;
-            SuperMeter.fillAmount = 0.3f;
-        //HPMeter.fillAmount = MyPlayer.HP / MyPlayer.MaxHP;
-        //...
+        HPMeter.fillAmount = ((float)MyPlayer.health / MyPlayer.maxHealth);
         //ItemSprite = MyPlayer.FocusItem.MySprite;
     }
 }
