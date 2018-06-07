@@ -1346,7 +1346,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1381076400080034}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.12925148, y: 0.71173155, z: 0.07442498}
@@ -1413,10 +1413,10 @@ MonoBehaviour:
   EntID: 0
   currentRole: 0
   playerLevel: 0
-  WeaponGrip: {fileID: 4635459041414442}
+  WeaponGrip: {fileID: 0}
   MyInventory: {fileID: 0}
   MyPlayerInfo: {fileID: 0}
-  playerStats: {fileID: 11400000, guid: 62234e3b328e9234d9f7c51eb33d68a6, type: 2}
+  playerStats: {fileID: 0}
 --- !u!114 &114374718097597488
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1435,7 +1435,6 @@ MonoBehaviour:
   normalAttackAnimation: {fileID: 0}
   superAttackAnimation: {fileID: 0}
   damageVariation: 0.1
-  baseDamage: 30
   hitsToBreak: 100
   _hitsTaken: 0
   _ultimateMeter: 0

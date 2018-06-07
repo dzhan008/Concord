@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+[RequireComponent(typeof(EnemyStats))]
 public abstract class Enemy : Entity
 {
     public delegate void Action();
@@ -10,8 +11,6 @@ public abstract class Enemy : Entity
     protected AIBehavior enemyBehavior;
     protected NavMeshAgent navAgent;
     protected Animator animController;
-
-    protected abstract void enemyStateChange();
 
     /*Stats*/
     [SerializeField]
@@ -43,25 +42,30 @@ public abstract class Enemy : Entity
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player")
+        if(other.tag == "Player")
         {
-            Vector3 hitDirection = (other.transform.position - transform.position).normalized;
+            /*Vector3 hitDirection = (other.transform.position - transform.position).normalized;
             hitDirection.y = 0;
             other.GetComponent<PlayerControls>().KnockBack(hitDirection);
-            other.GetComponent<Player>().TakeDamage(CalculateDamage());
-            //other.GetComponent<Player>().attacked = true;
+            other.GetComponent<Player>().health -= CalculateDamage();*/
         }
-    }
-
-    public void Damage(int dmg)
-    {
-        health -= dmg - stats.Defense;
-        KnockBack(Vector3.right);
+        else if(other.tag == "Weapon")
+        {
+            Weapon weapon = other.gameObject.GetComponent<Weapon>();
+            if(weapon.owner.state == PlayerStates.attacking)
+            {
+                Debug.Log("Player is attacking!");
+                Vector3 hitDirection = (transform.position - other.transform.position).normalized;
+                hitDirection.y = 0;
+                KnockBack(hitDirection);
+                health -= other.gameObject.GetComponent<Weapon>().CalculateDamage();
+            }
+        }
     }
 
     private void KnockBack(Vector3 dir)
     {
-        GetComponent<Rigidbody>().AddForce(dir, ForceMode.Impulse);
+        GetComponent<Rigidbody>().AddForce(dir * 30, ForceMode.Impulse);
     }
     private int CalculateDamage()
     {
@@ -76,7 +80,7 @@ public abstract class Enemy : Entity
         Weapon player_weapon = player_stats.GetComponent<Weapon>();
         damage += (int) (damage * Random.Range(-1f * player_weapon.damageVariation, player_weapon.damageVariation));
         return damage;*/
-        return stats.Strength * 5;
+        return 50;
     }
 
 }

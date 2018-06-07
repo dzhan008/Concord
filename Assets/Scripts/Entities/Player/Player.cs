@@ -12,6 +12,13 @@ using UnityEngine;
         bow = 4
     }
 
+    public enum PlayerStates
+    {
+        idle = 0,
+        attacking = 1,
+        dead = 2
+    }
+
 public class Player : Entity {
 
     public Role currentRole;
@@ -21,11 +28,10 @@ public class Player : Entity {
     public PlayerInfo MyPlayerInfo;
     [SerializeField]
     public Stats playerStats;
+    public PlayerStates state = PlayerStates.idle;
 
     //Player's Health
-
-    public int maxHealth { get; set; }
-    private int _maxHealth;
+    private int maxHealth;
     public int health
     {
         get
@@ -48,7 +54,7 @@ public class Player : Entity {
     // TODO: Remove this test when game starts
     public void Awake()
     {
-        Initialize(EntID);
+        //Initialize(0);
     }
 
     private void Start()
@@ -103,12 +109,6 @@ public class Player : Entity {
             Weapon new_weapon = Instantiate(use_weapon, WeaponGrip);
             new_weapon.transform.localPosition = Vector3.zero;
             new_weapon.transform.localRotation = Quaternion.Euler(0, 0, 0);
-            new_weapon.transform.localScale = new Vector3(100, 100, 100);
         }
-    }
-
-    public void TakeDamage(int dmg)
-    {
-        health -= dmg - playerStats.Strength;
     }
 }

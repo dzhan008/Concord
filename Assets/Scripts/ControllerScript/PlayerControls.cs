@@ -38,8 +38,8 @@ public class PlayerControls : MonoBehaviour
 
     //Variables checking for multiple inputs in attacks
     private float timePassed;
-    public bool canAttack = true;
-    private const float MIN_REACTION_TIME = 0.4f;
+    public bool attacked = false;
+    private const float MIN_REACTION_TIME = 0.5f;
     private const float THRESHOLD = 0.6f;
     public int comboCounter
     {
@@ -88,10 +88,6 @@ public class PlayerControls : MonoBehaviour
 
     private void Update()
     {
-        if (!canAttack)
-        {
-            timePassed += Time.deltaTime;
-        }
         anim.SetBool("grounded", false);
         //Check if there is ground under the player, add whatIsGround as parameter to check layer
         Collider[] colliders = Physics.OverlapCapsule(groundCheckTop, groundCheckBot, groundRadius);
@@ -193,7 +189,7 @@ public class PlayerControls : MonoBehaviour
         float animationLength = anim.GetCurrentAnimatorStateInfo(0).length;
         float animationWindow;
         //Checks for animations that are very small
-        if (animationLength - (THRESHOLD * animationLength) < MIN_REACTION_TIME)
+        /*if (animationLength - (THRESHOLD * animationLength) < MIN_REACTION_TIME)
         {
             animationWindow = MIN_REACTION_TIME;
         }
@@ -212,7 +208,22 @@ public class PlayerControls : MonoBehaviour
         else
         {
             Debug.Log("Cannot Attack Yet!");
-        }
+        }*/
+        anim.SetTrigger("LightAttack");
+    }
+
+    public void DisableInput()
+    {
+        Debug.Log("Disabling Input!");
+        anim.SetBool("DisableTransitions", true);
+        player.state = PlayerStates.attacking;
+    }
+
+    public void EnableInput()
+    {
+        Debug.Log("Enabling Input!");
+        player.state = PlayerStates.idle;
+        anim.SetBool("DisableTransitions", false);
     }
 
     public void KnockBack(Vector3 dir)
