@@ -8,7 +8,7 @@ public class Camera : Singleton<Camera> {
     Vector3 offset;
     int playerCount = 0;
     [SerializeField]
-    bool canMove = true;
+    public bool canMove = true;
 
     private void Awake()
     {

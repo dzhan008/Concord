@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(EnemyStats))]
 public abstract class Enemy : Entity
 {
     public delegate void Action();
@@ -55,6 +54,8 @@ public abstract class Enemy : Entity
             hitDirection.y = 0;
             KnockBack(hitDirection);
             health -= 100;
+            animController.SetTrigger("hit");
+            animController.SetFloat("health", health);
         }
     }
 

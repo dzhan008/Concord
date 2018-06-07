@@ -29,10 +29,21 @@ public class GameManager : MonoBehaviour {
         //testPlayer.transform.position = startingPos.position;
         //To-do Change this to instantiate all players on start so IDs can correctly be set
         Blackboard.setPlayerRef(testPlayer, 0);
+        Blackboard.gameManager = this;
     }
     private void endLevel()
     {
         Time.timeScale = 0;
+    }
+
+    public void Incombat()
+    {
+        Camera.Instance.canMove = false;
+    }
+
+    public void OutOfCombat()
+    {
+        Camera.Instance.canMove = true;
     }
 }
 
