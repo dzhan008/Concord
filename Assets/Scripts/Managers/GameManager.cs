@@ -28,7 +28,6 @@ public class GameManager : MonoBehaviour {
         //endingPos.Initialize(triggerHit);
         //testPlayer.transform.position = startingPos.position;
         //To-do Change this to instantiate all players on start so IDs can correctly be set
-        Blackboard.setPlayerRef(testPlayer, 0);
         Blackboard.gameManager = this;
     }
     private void endLevel()

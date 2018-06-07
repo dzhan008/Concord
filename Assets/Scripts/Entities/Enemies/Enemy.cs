@@ -3,14 +3,21 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(EnemyStats))]
 public abstract class Enemy : Entity
 {
+    protected enum EnemyStates
+    {
+        sleep = 0,
+        chase,
+        attack,
+
+    }
     public delegate void Action();
     protected Action del;
     protected AIBehavior enemyBehavior;
     protected NavMeshAgent navAgent;
     protected Animator animController;
+    protected EnemyStates state;
 
     /*Stats*/
     [SerializeField]
@@ -44,10 +51,13 @@ public abstract class Enemy : Entity
     {
         if(other.tag == "Player")
         {
-            /*Vector3 hitDirection = (other.transform.position - transform.position).normalized;
-            hitDirection.y = 0;
-            other.GetComponent<PlayerControls>().KnockBack(hitDirection);
-            other.GetComponent<Player>().health -= CalculateDamage();*/
+            if(state == EnemyStates.attack)
+            {
+                Vector3 hitDirection = (other.transform.position - transform.position).normalized;
+                hitDirection.y = 0;
+                other.GetComponent<PlayerControls>().KnockBack(hitDirection);
+                other.GetComponent<Player>().health -= CalculateDamage();
+            }
         }
         else if(other.tag == "Weapon")
         {
@@ -59,6 +69,7 @@ public abstract class Enemy : Entity
                 hitDirection.y = 0;
                 KnockBack(hitDirection);
                 health -= other.gameObject.GetComponent<Weapon>().CalculateDamage();
+                GetComponent<Animator>().SetTrigger("hit");
             }
         }
     }

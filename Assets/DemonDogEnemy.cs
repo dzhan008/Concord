@@ -5,13 +5,7 @@ using UnityEngine.AI;
 
 public class DemonDogEnemy : Enemy
 {
-    private enum DemonDogStates
-    {
-        sleep = 0,
-        chase,
-        attack,
 
-    }
 
     [SerializeField]
     private Trigger alertTrigger;
@@ -20,25 +14,23 @@ public class DemonDogEnemy : Enemy
     [SerializeField]
     private float attackRange;
 
-    private DemonDogStates state;
-
     protected void Awake()
     {
-        state = DemonDogStates.sleep;
+        state = EnemyStates.sleep;
         navAgent = GetComponent<NavMeshAgent>();
         animController = GetComponent<Animator>();
         enemyBehavior = gameObject.AddComponent<AlertBehavior>();
         ((AlertBehavior)enemyBehavior).Initialize(alertTrigger, enemyStateChange);
     }
 
-    protected override void enemyStateChange()
+    protected void enemyStateChange()
     {
         //Transitions
         switch (state)
         {
-            case DemonDogStates.sleep:
-                state = DemonDogStates.chase;
-                animController.SetTrigger("surprised");
+            case EnemyStates.sleep:
+                state = EnemyStates.chase;
+                animController.SetTrigger("suprised");
                 enemyBehavior = gameObject.AddComponent<ChaseBehavior>();
                 ((ChaseBehavior)enemyBehavior).Initialize(
                     enemyStateChange,
@@ -48,12 +40,14 @@ public class DemonDogEnemy : Enemy
                     chaseRange,
                     alertTrigger.GetCollided().transform);
                 break;
-            case DemonDogStates.chase:
-                if (!(animController.GetCurrentAnimatorStateInfo(0).IsName("Attack")))
-                    state = DemonDogStates.attack;
+            case EnemyStates.chase:
+                if (!(animController.GetCurrentAnimatorStateInfo(0).IsName("Attack1")) &&
+                    !(animController.GetCurrentAnimatorStateInfo(0).IsName("Attack2")) &&
+                    !(animController.GetCurrentAnimatorStateInfo(0).IsName("Attack3")))
+                    state = EnemyStates.attack;
                 break;
-            case DemonDogStates.attack:
-                state = DemonDogStates.chase;
+            case EnemyStates.attack:
+                state = EnemyStates.chase;
                 break;
             default:
                 break;
@@ -62,14 +56,16 @@ public class DemonDogEnemy : Enemy
         //Actions
         switch (state)
         {
-            case DemonDogStates.sleep:
+            case EnemyStates.sleep:
                 break;
-            case DemonDogStates.chase:
+            case EnemyStates.chase:
                 Blackboard.gameManager.Incombat();
                 animController.SetFloat("speed", 1);
                 break;
-            case DemonDogStates.attack:
-                if (!(animController.GetCurrentAnimatorStateInfo(0).IsName("Attack")))
+            case EnemyStates.attack:
+                if (!(animController.GetCurrentAnimatorStateInfo(0).IsName("Attack1")) &&
+                    !(animController.GetCurrentAnimatorStateInfo(0).IsName("Attack2")) &&
+                    !(animController.GetCurrentAnimatorStateInfo(0).IsName("Attack3")))
                     animController.SetTrigger("attack");
                 enemyStateChange();
                 break;
@@ -82,7 +78,7 @@ public class DemonDogEnemy : Enemy
     {
         Blackboard.gameManager.OutOfCombat();
         animController.SetFloat("speed", 0);
-        state = DemonDogStates.sleep;
+        state = EnemyStates.sleep;
         enemyBehavior = gameObject.AddComponent<AlertBehavior>();
         ((AlertBehavior)enemyBehavior).Initialize(alertTrigger, enemyStateChange);
     }

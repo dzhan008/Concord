@@ -31,7 +31,7 @@ public class Player : Entity {
     public PlayerStates state = PlayerStates.idle;
 
     //Player's Health
-    private int maxHealth;
+    public int maxHealth;
     public int health
     {
         get
@@ -54,7 +54,7 @@ public class Player : Entity {
     // TODO: Remove this test when game starts
     public void Awake()
     {
-        //Initialize(0);
+        Initialize(EntID);
     }
 
     private void Start()
