@@ -16,6 +16,7 @@ public class Spawner : MonoBehaviour
 
     private void Awake()
     {
+        pooler = GetComponent<ObjectPooler>();
         trigger = GetComponent<Trigger>();
         trigger.Initialize(Spawn);
     }

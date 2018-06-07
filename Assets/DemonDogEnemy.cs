@@ -9,12 +9,12 @@ public class DemonDogEnemy : Enemy
     {
         sleep = 0,
         chase,
-        attack
+        attack,
+
     }
 
     [SerializeField]
     private Trigger alertTrigger;
-
     [SerializeField]
     private float chaseRange;
     [SerializeField]
@@ -38,6 +38,7 @@ public class DemonDogEnemy : Enemy
         {
             case DemonDogStates.sleep:
                 state = DemonDogStates.chase;
+                animController.SetTrigger("surprised");
                 enemyBehavior = gameObject.AddComponent<ChaseBehavior>();
                 ((ChaseBehavior)enemyBehavior).Initialize(
                     enemyStateChange,
@@ -64,6 +65,7 @@ public class DemonDogEnemy : Enemy
             case DemonDogStates.sleep:
                 break;
             case DemonDogStates.chase:
+                Blackboard.gameManager.Incombat();
                 animController.SetFloat("speed", 1);
                 break;
             case DemonDogStates.attack:
@@ -78,6 +80,7 @@ public class DemonDogEnemy : Enemy
 
     private void breakFromChase()
     {
+        Blackboard.gameManager.OutOfCombat();
         animController.SetFloat("speed", 0);
         state = DemonDogStates.sleep;
         enemyBehavior = gameObject.AddComponent<AlertBehavior>();

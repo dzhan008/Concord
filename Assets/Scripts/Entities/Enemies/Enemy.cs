@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-[RequireComponent(typeof(EnemyStats))]
 public abstract class Enemy : Entity
 {
     public delegate void Action();
@@ -52,13 +51,6 @@ public abstract class Enemy : Entity
             other.GetComponent<Player>().TakeDamage(CalculateDamage());
             //other.GetComponent<Player>().attacked = true;
         }
-        /*else if(other.tag == "Weapon")
-        {
-            Vector3 hitDirection = (transform.position - other.transform.position).normalized;
-            hitDirection.y = 0;
-            KnockBack(hitDirection);
-            health -= 100;
-        }*/
     }
 
     public void Damage(int dmg)

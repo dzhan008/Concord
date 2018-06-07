@@ -20,6 +20,7 @@ public enum Element
 public static class Blackboard {
 
     public static Player[] playerArr = new Player[9];
+    public static GameManager gameManager;
 
     private static IntersectionMatrix ElementChart;
 
@@ -31,7 +32,7 @@ public static class Blackboard {
 
     public static void setPlayerRef(Player player, int playerNum)
     {
-        playerArr[playerNum] = player;
+        playerArr[playerNum + 1] = player;
     }
 
     // Should be > 1.0 if super effective, < 1.0 if ineffective, and = 1.0 if neutral
