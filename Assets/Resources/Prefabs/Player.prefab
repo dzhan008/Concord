@@ -40,7 +40,7 @@ GameObject:
   - component: {fileID: 114282873630510262}
   - component: {fileID: 114312504384529328}
   m_Layer: 0
-  m_Name: TestPlayer
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1346,7 +1346,7 @@ BoxCollider:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1381076400080034}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.12925148, y: 0.71173155, z: 0.07442498}
@@ -1395,9 +1395,9 @@ MonoBehaviour:
   whatIsGround:
     serializedVersion: 2
     m_Bits: 0
+  MyPlayerInfo: {fileID: 0}
   knockBackForce: 1.5
   knockBackTime: 0.5
-  knockBackCounter: 0
   canAttack: 1
 --- !u!114 &114312504384529328
 MonoBehaviour:
@@ -1413,6 +1413,10 @@ MonoBehaviour:
   EntID: 0
   currentRole: 0
   playerLevel: 0
+  WeaponGrip: {fileID: 4635459041414442}
+  MyInventory: {fileID: 0}
+  MyPlayerInfo: {fileID: 0}
+  playerStats: {fileID: 11400000, guid: 62234e3b328e9234d9f7c51eb33d68a6, type: 2}
 --- !u!114 &114374718097597488
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1424,12 +1428,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baebc334a4d936742a78748e93a0aa3a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Icon: {fileID: 0}
+  held: 0
+  ItemData: {fileID: 0}
   RoleRestriction: 0
   minPlayerLevel: 0
   normalAttackAnimation: {fileID: 0}
   superAttackAnimation: {fileID: 0}
   damageVariation: 0.1
+  baseDamage: 30
   hitsToBreak: 100
   _hitsTaken: 0
   _ultimateMeter: 0

@@ -39,3 +39,9 @@ Icon?
 ehthumbs.db
 [Tt]humbs.db
 ==============
+
+Assets/Main 1.unity
+Assets/Resources/Models/Enemies/Materials/No Name.mat
+Assets/Resources/Prefabs/Test.prefab
+Assets/Scripts/Entities/Enemies/DemonDogEnemy.cs
+ProjectSettings/ProjectVersion.txt

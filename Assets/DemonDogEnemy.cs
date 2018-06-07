@@ -31,7 +31,7 @@ public class DemonDogEnemy : Enemy
         ((AlertBehavior)enemyBehavior).Initialize(alertTrigger, enemyStateChange);
     }
 
-    protected void enemyStateChange()
+    protected override void enemyStateChange()
     {
         //Transitions
         switch (state)

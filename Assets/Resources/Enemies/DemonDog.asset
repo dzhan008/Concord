@@ -11,9 +11,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf3c8b4238c48804682f41141b48b33e, type: 3}
   m_Name: DemonDog
   m_EditorClassIdentifier: 
+  Health: 100
   Strength: 10
-  Defense: 0
-  Agility: 0
+  Defense: 5
+  Agility: 10
   Intelligence: 10
   Element: 0
-  Health: 500

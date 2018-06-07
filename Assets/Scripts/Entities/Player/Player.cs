@@ -20,10 +20,12 @@ public class Player : Entity {
     public Inventory MyInventory;
     public PlayerInfo MyPlayerInfo;
     [SerializeField]
-    private Stats playerStats;
+    public Stats playerStats;
 
     //Player's Health
-    private int maxHealth;
+
+    public int maxHealth { get; set; }
+    private int _maxHealth;
     public int health
     {
         get
@@ -101,6 +103,12 @@ public class Player : Entity {
             Weapon new_weapon = Instantiate(use_weapon, WeaponGrip);
             new_weapon.transform.localPosition = Vector3.zero;
             new_weapon.transform.localRotation = Quaternion.Euler(0, 0, 0);
+            new_weapon.transform.localScale = new Vector3(100, 100, 100);
         }
+    }
+
+    public void TakeDamage(int dmg)
+    {
+        health -= dmg - playerStats.Strength;
     }
 }

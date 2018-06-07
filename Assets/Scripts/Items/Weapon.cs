@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Weapon : Item {
 
+    private Player playerReference;
+
     // Wielder must be one of these roles to wield this weapon
     [SerializeField]
     private Role RoleRestriction;
@@ -24,10 +26,17 @@ public class Weapon : Item {
     // After all defense calculations.
     public float damageVariation = 0.10f;
 
+    public int baseDamage = 0;
+
     // How many hits before this weapon breaks
     [SerializeField]
     private int hitsToBreak = 100;
-    
+
+    private void Start()
+    {
+        playerReference = transform.root.GetComponent<Player>();
+    }
+
     public int hitsTaken {
         get {
             return _hitsTaken;
@@ -57,5 +66,20 @@ public class Weapon : Item {
         }
         return false;
     }
-    
+
+    public int CalculateDamage()
+    {
+        //For now, we'll add the base damage plus the strength * some modifier
+        return baseDamage + (int)(playerReference.playerStats.Strength * 1.5f);
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        Debug.Log("Trigger Entered!");
+        if (other.tag == "Enemy")
+        {
+            other.GetComponent<Enemy>().Damage(CalculateDamage());
+        }
+    }
+
 }

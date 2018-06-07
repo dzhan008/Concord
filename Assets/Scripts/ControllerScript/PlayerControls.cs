@@ -39,7 +39,7 @@ public class PlayerControls : MonoBehaviour
     //Variables checking for multiple inputs in attacks
     private float timePassed;
     public bool canAttack = true;
-    private const float MIN_REACTION_TIME = 0.5f;
+    private const float MIN_REACTION_TIME = 0.4f;
     private const float THRESHOLD = 0.6f;
     public int comboCounter
     {
