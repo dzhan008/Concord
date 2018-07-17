@@ -1,7 +1,5 @@
 fileFormatVersion: 2
 guid: d209be44c512d3b409d1f3ceab97986e
-timeCreated: 1527733445
-licenseType: Free
 ModelImporter:
   serializedVersion: 22
   fileIDToRecycleName:
@@ -102,6 +100,7 @@ ModelImporter:
     animationRetargetingWarnings: 
     animationDoRetargetingWarnings: 0
     importAnimatedCustomProperties: 0
+    importConstraints: 0
     animationCompression: 1
     animationRotationError: 0.5
     animationPositionError: 0.5
@@ -194,6 +193,14 @@ ModelImporter:
         functionName: EnableInput
         data: 
         objectReferenceParameter: {fileID: 11500000, guid: 2839a85f87089a74dbca909322136b0b,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 1
+        functionName: CheckHitBoxes
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 2e01381fbffd9714890681b2ab6d9d40,
           type: 3}
         floatParameter: 0
         intParameter: 0

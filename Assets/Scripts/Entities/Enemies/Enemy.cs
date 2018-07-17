@@ -68,15 +68,15 @@ public abstract class Enemy : Entity
                 Vector3 hitDirection = (transform.position - other.transform.position).normalized;
                 hitDirection.y = 0;
                 KnockBack(hitDirection);
-                health -= other.gameObject.GetComponent<Weapon>().CalculateDamage();
+                //health -= other.gameObject.GetComponent<Weapon>().CalculateDamage();
                 GetComponent<Animator>().SetTrigger("hit");
             }
         }
     }
 
-    private void KnockBack(Vector3 dir)
+    public void KnockBack(Vector3 dir)
     {
-        GetComponent<Rigidbody>().AddForce(dir * 30, ForceMode.Impulse);
+        GetComponent<Rigidbody>().AddForce(dir * 100, ForceMode.Impulse);
     }
     private int CalculateDamage()
     {

@@ -24,6 +24,7 @@ public class Player : Entity {
     public Role currentRole;
     public int playerLevel = 0;
     public Transform WeaponGrip;
+    public Weapon CurrentWeapon;
     public Inventory MyInventory;
     public PlayerInfo MyPlayerInfo;
     [SerializeField]
@@ -109,6 +110,22 @@ public class Player : Entity {
             Weapon new_weapon = Instantiate(use_weapon, WeaponGrip);
             new_weapon.transform.localPosition = Vector3.zero;
             new_weapon.transform.localRotation = Quaternion.Euler(0, 0, 0);
+        }
+    }
+
+    //TODO: See if this should even be in player
+    public void CheckHitBoxes()
+    {
+        Collider col = CurrentWeapon.gameObject.GetComponent<BoxCollider>();
+        Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents);
+        foreach(Collider collider in cols)
+        {
+            if(collider.tag == "Enemy")
+            {
+                Vector3 hitDirection = (collider.transform.position - transform.position).normalized;
+                collider.gameObject.GetComponent<Enemy>().KnockBack(hitDirection);
+            }
+            Debug.Log(collider.gameObject.name);
         }
     }
 }
