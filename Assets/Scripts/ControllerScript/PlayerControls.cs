@@ -131,9 +131,7 @@ public class PlayerControls : MonoBehaviour
         }
         Vector3 pos = UnityEngine.Camera.main.WorldToViewportPoint(transform.position);
         pos.x = Mathf.Clamp01(pos.x);
-        pos.y = Mathf.Clamp01(pos.y);
         transform.position = UnityEngine.Camera.main.ViewportToWorldPoint(pos);
-
     }
 
     private void FixedUpdate()
