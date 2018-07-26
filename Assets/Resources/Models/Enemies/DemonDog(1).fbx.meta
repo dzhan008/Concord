@@ -107,6 +107,7 @@ ModelImporter:
     7400012: Flinch
     7400014: Attack2
     7400016: Attack3
+    7400018: Windup Run
     9500000: //RootNode
     13700000: Sphere.006
     13700002: Sphere.009
@@ -256,12 +257,12 @@ ModelImporter:
     - serializedVersion: 16
       name: Run
       takeName: Armature|ArmatureAction
-      firstFrame: 280
+      firstFrame: 295
       lastFrame: 325
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
-      cycleOffset: 15
+      cycleOffset: 0
       loop: 0
       hasAdditiveReferencePose: 0
       loopTime: 1
@@ -370,6 +371,34 @@ ModelImporter:
       takeName: Armature|ArmatureAction
       firstFrame: 570
       lastFrame: 635
+      wrapMode: 0
+      orientationOffsetY: 0
+      level: 0
+      cycleOffset: 0
+      loop: 0
+      hasAdditiveReferencePose: 0
+      loopTime: 0
+      loopBlend: 0
+      loopBlendOrientation: 0
+      loopBlendPositionY: 0
+      loopBlendPositionXZ: 0
+      keepOriginalOrientation: 0
+      keepOriginalPositionY: 1
+      keepOriginalPositionXZ: 0
+      heightFromFeet: 0
+      mirror: 0
+      bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+      curves: []
+      events: []
+      transformMask: []
+      maskType: 3
+      maskSource: {instanceID: 0}
+      additiveReferencePoseFrame: 0
+    - serializedVersion: 16
+      name: Windup Run
+      takeName: Armature|ArmatureAction
+      firstFrame: 280
+      lastFrame: 295
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
