@@ -9,11 +9,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e4a0c1aefd87679408956994b4efe356, type: 3}
-  m_Name: Player
+  m_Name: class0
   m_EditorClassIdentifier: 
   Health: 100
-  Strength: 10
-  Defense: 10
-  Agility: 10
-  Intelligence: 10
+  Strength: 35
+  Defense: 4
+  Agility: 4
+  Intelligence: 4
   Element: 0
