@@ -9,6 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/CharacterSelection.unity
     guid: 938818e0166ccf34bba975a59e6edfcf
   - enabled: 1
-    path: Assets/Scenes/TestScene.unity
+    path: Assets/Scenes/CharSelectTransitionScene.unity
     guid: 382a1276fda9e8641b6d56ef5933e734
   m_configObjects: {}
