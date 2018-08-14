@@ -198,6 +198,14 @@ ModelImporter:
         floatParameter: 0
         intParameter: 0
         messageOptions: 0
+      - time: 1
+        functionName: CheckHitBoxes
+        data: 
+        objectReferenceParameter: {fileID: 11500000, guid: 2e01381fbffd9714890681b2ab6d9d40,
+          type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

@@ -152,10 +152,10 @@ public class PlayerControls : MonoBehaviour
 
     private void InputParse()
     {
-        move();
         if (attackFlag)
             attack();
-
+        if (player.state != PlayerStates.attacking)
+            move();
         //Reset all Input flags
         setBools();
         //Set delegate to empty
