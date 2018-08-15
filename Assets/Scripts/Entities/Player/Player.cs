@@ -31,6 +31,8 @@ public class Player : Entity {
     public Stats playerStats;
     public PlayerStates state = PlayerStates.idle;
 
+    public string playerName;
+
     //Player's Health
     public int maxHealth;
     public int health
@@ -52,6 +54,34 @@ public class Player : Entity {
 
     private int _health = 0;
 
+    //Player's Stats
+    private int _strength = 0;
+    public int strength
+    {
+        get
+        {
+            return _strength;
+        }
+    }
+
+    private int _agility = 0;
+    public int agility
+    {
+        get
+        {
+            return _agility;
+        }
+    }
+
+    private int _intelligence = 0;
+    public int intelligence
+    {
+        get
+        {
+            return _intelligence;
+        }
+    }
+
     // TODO: Remove this test when game starts
     public void Awake()
     {
@@ -61,6 +91,10 @@ public class Player : Entity {
     private void Start()
     {
         maxHealth = _health = playerStats.Health;
+
+        _strength = playerStats.Strength;
+        _agility = playerStats.Agility;
+        _intelligence = playerStats.Intelligence;
     }
 
     public void CheckHeldInventory()
@@ -118,9 +152,9 @@ public class Player : Entity {
     {
         Collider col = CurrentWeapon.gameObject.GetComponent<BoxCollider>();
         Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents);
-        foreach(Collider collider in cols)
+        foreach (Collider collider in cols)
         {
-            if(collider.tag == "Enemy")
+            if (collider.tag == "Enemy")
             {
                 Vector3 hitDirection = (collider.transform.position - transform.position).normalized;
                 collider.gameObject.GetComponent<Enemy>().KnockBack(hitDirection);
