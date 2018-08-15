@@ -25,10 +25,21 @@ public class SlimeEnemy : Enemy
         switch (state)
         {
             case EnemyStates.sleep:
+                state = EnemyStates.chase;
+                enemyBehavior = gameObject.AddComponent<ChaseBehavior>();
+                ((ChaseBehavior)enemyBehavior).Initialize(
+                    enemyStateChange,
+                    breakFromChase,
+                    navAgent,
+                    attackRange,
+                    chaseRange,
+                    alertTrigger.GetCollided().transform);
                 break;
             case EnemyStates.chase:
+                state = EnemyStates.attack;
                 break;
             case EnemyStates.attack:
+                state = EnemyStates.chase;
                 break;
             default:
                 break;
@@ -40,8 +51,12 @@ public class SlimeEnemy : Enemy
             case EnemyStates.sleep:
                 break;
             case EnemyStates.chase:
+                Blackboard.gameManager.Incombat();
+                animController.SetFloat("speed", 1);
                 break;
             case EnemyStates.attack:
+                animController.SetTrigger("attack");
+                enemyStateChange();
                 break;
             default:
                 break;

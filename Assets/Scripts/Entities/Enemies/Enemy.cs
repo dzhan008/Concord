@@ -70,6 +70,7 @@ public abstract class Enemy : Entity
                 KnockBack(hitDirection);
                 //health -= other.gameObject.GetComponent<Weapon>().CalculateDamage();
                 GetComponent<Animator>().SetTrigger("hit");
+                StartCoroutine(stun());
             }
         }
     }
@@ -92,6 +93,14 @@ public abstract class Enemy : Entity
         damage += (int) (damage * Random.Range(-1f * player_weapon.damageVariation, player_weapon.damageVariation));
         return damage;*/
         return 50;
+    }
+
+    private IEnumerator stun()
+    {
+        yield return null;
+        GetComponent<Animator>().SetFloat("speed", 0);
+        yield return new WaitForSeconds(.5f);
+        GetComponent<Animator>().SetFloat("speed", 1);
     }
 
 }
