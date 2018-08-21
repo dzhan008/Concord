@@ -20,7 +20,6 @@ using UnityEngine;
     }
 
 public class Player : Entity {
-
     public Role currentRole;
     public int playerLevel = 0;
     public Transform WeaponGrip;
@@ -150,6 +149,7 @@ public class Player : Entity {
     //TODO: See if this should even be in player
     public void CheckHitBoxes()
     {
+        Debug.Log("Check hitboxes!");
         Collider col = CurrentWeapon.gameObject.GetComponent<BoxCollider>();
         Collider[] cols = Physics.OverlapBox(col.bounds.center, col.bounds.extents);
         foreach (Collider collider in cols)
@@ -157,9 +157,10 @@ public class Player : Entity {
             if (collider.tag == "Enemy")
             {
                 Vector3 hitDirection = (collider.transform.position - transform.position).normalized;
-                collider.gameObject.GetComponent<Enemy>().KnockBack(hitDirection);
+                collider.transform.root.gameObject.GetComponent<Enemy>().KnockBack(hitDirection);
+                Debug.Log("Hit enemy!");
             }
-            Debug.Log(collider.gameObject.name);
         }
     }
+
 }

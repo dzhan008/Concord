@@ -7,6 +7,9 @@ public class CharacterBehavior : StateMachineBehaviour {
 	 // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
 	override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex) {
         animator.ResetTrigger("LightAttack");
+        animator.ResetTrigger("StrongAttack");
+        animator.ResetTrigger("Attack");
+        animator.gameObject.GetComponent<Player>().state = PlayerStates.idle;
     }
 
 	// OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

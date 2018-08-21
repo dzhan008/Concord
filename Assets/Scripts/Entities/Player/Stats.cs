@@ -14,6 +14,7 @@ public class Stats : ScriptableObject {
     public int Defense = 0;
     public int Agility = 0;
     public int Intelligence = 10;
+    public int Toughness = 100;
     public Element Element = Element.none;
 
 }

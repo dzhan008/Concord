@@ -30,6 +30,9 @@ public class Weapon : Item {
 
     [SerializeField]
     private int damage = 100;
+    // How much toughness damage a weapon can do to a weapon (Also known as the damage an enemy can take before they can be stunned)
+    [SerializeField]
+    private int fatigueDamage = 20;
 
     public Player owner;
 

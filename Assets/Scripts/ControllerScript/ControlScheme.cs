@@ -2,7 +2,8 @@
 
 public class ControlScheme : ScriptableObject
 {
-    public KeyCode attack;
+    public KeyCode lightAttack;
+    public KeyCode strongAttack;
     public KeyCode interact;
     public KeyCode start;
     public KeyCode jump;
@@ -20,7 +21,8 @@ public class ControlScheme : ScriptableObject
                 controls.jump = KeyCode.RightShift;
                 break;
             case 0:
-                controls.attack = KeyCode.Mouse0;
+                controls.lightAttack = KeyCode.Z;
+                controls.strongAttack = KeyCode.X;
                 controls.interact = KeyCode.E;
                 controls.start = KeyCode.Escape;
                 controls.jump = KeyCode.Space;
@@ -30,12 +32,12 @@ public class ControlScheme : ScriptableObject
                 controls.InventoryDiscard = KeyCode.Z;
                 break;
             case 1:
-                controls.attack = KeyCode.Joystick1Button1;
+                controls.lightAttack = KeyCode.Joystick1Button1;
                 controls.interact = KeyCode.Joystick1Button0;
                 controls.start = KeyCode.Joystick1Button9;
                 break;
             case 2:
-                controls.attack = KeyCode.Joystick2Button1;
+                controls.lightAttack = KeyCode.Joystick2Button1;
                 break;
             default:
                 break;

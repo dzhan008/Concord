@@ -42,9 +42,23 @@ public abstract class Enemy : Entity
 
     private int _health = 0;
 
+    private int currentToughness
+    {
+        get
+        {
+            return _currentToughness;
+        }
+        set
+        {
+            _currentToughness = value;
+        }
+    }
+    private int _currentToughness = 0;
+
     private void Start()
     {
         maxHealth = _health = stats.Health;
+        currentToughness = stats.Toughness;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -57,20 +71,6 @@ public abstract class Enemy : Entity
                 hitDirection.y = 0;
                 other.GetComponent<PlayerControls>().KnockBack(hitDirection);
                 other.GetComponent<Player>().health -= CalculateDamage();
-            }
-        }
-        else if(other.tag == "Weapon")
-        {
-            Weapon weapon = other.gameObject.GetComponent<Weapon>();
-            if(weapon.owner.state == PlayerStates.attacking)
-            {
-                Debug.Log("Player is attacking!");
-                Vector3 hitDirection = (transform.position - other.transform.position).normalized;
-                hitDirection.y = 0;
-                KnockBack(hitDirection);
-                //health -= other.gameObject.GetComponent<Weapon>().CalculateDamage();
-                GetComponent<Animator>().SetTrigger("hit");
-                StartCoroutine(stun());
             }
         }
     }

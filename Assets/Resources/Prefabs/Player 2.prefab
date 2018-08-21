@@ -673,6 +673,7 @@ MonoBehaviour:
   currentRole: 0
   playerLevel: 0
   WeaponGrip: {fileID: 0}
+  CurrentWeapon: {fileID: 0}
   MyInventory: {fileID: 0}
   MyPlayerInfo: {fileID: 0}
   playerStats: {fileID: 0}

@@ -28,6 +28,7 @@ public class PlayerControls : MonoBehaviour
     private Vector3 moveDir;
     private float maxMoveDir;
     private bool jumpFlag, attackFlag, interactFlag;
+    private KeyCode attackType;
 
     //Knockback stuff
     [SerializeField]
@@ -103,10 +104,18 @@ public class PlayerControls : MonoBehaviour
         }
 
         //Parse Input for button press, set flag then add flag to delegate to be unset after InputParse()
-        if (Input.GetKeyDown(controlMap.attack))
+        if (Input.GetKeyDown(controlMap.lightAttack))
         {
             attackFlag = true;
             setBools += () => attackFlag = false;
+            attackType = controlMap.lightAttack;
+        }
+        else if (Input.GetKeyDown(controlMap.strongAttack))
+        {
+            attackFlag = true;
+            setBools += () => attackFlag = false;
+            attackType = controlMap.strongAttack;
+
         }
 
         if (Input.GetKeyDown(controlMap.jump))
@@ -184,43 +193,27 @@ public class PlayerControls : MonoBehaviour
 
     private void attack()
     {
-        float animationLength = anim.GetCurrentAnimatorStateInfo(0).length;
-        float animationWindow;
-        //Checks for animations that are very small
-        /*if (animationLength - (THRESHOLD * animationLength) < MIN_REACTION_TIME)
+        anim.SetTrigger("Attack");
+        if (attackType == controlMap.lightAttack)
         {
-            animationWindow = MIN_REACTION_TIME;
+            anim.SetTrigger("LightAttack");
         }
-        else
+        else if (attackType == controlMap.strongAttack)
         {
-            animationWindow = anim.GetCurrentAnimatorStateInfo(0).length * THRESHOLD;
-        } //Checks if the player can attack after it reaches a certain point in the animation.
-        if (animationWindow < timePassed || comboCounter == 0)
-        {
-            Debug.Log("Attack!");
-            timePassed = 0;
-            comboCounter++;
-            anim.SetInteger("attack", comboCounter);
-            canAttack = false;
+            anim.SetTrigger("StrongAttack");
         }
-        else
-        {
-            Debug.Log("Cannot Attack Yet!");
-        }*/
-        anim.SetTrigger("LightAttack");
+        player.state = PlayerStates.attacking;
     }
 
     public void DisableInput()
     {
-        Debug.Log("Disabling Input!");
         anim.SetBool("DisableTransitions", true);
-        player.state = PlayerStates.attacking;
+        //player.state = PlayerStates.attacking;
     }
 
     public void EnableInput()
     {
-        Debug.Log("Enabling Input!");
-        player.state = PlayerStates.idle;
+        //player.state = PlayerStates.idle;
         anim.SetBool("DisableTransitions", false);
     }
 
@@ -232,4 +225,5 @@ public class PlayerControls : MonoBehaviour
         //Attempt to test knockback on y-axis
         //moveDir = knockBackForce * (Quaternion.AngleAxis(-30, Vector3.forward) * dir);
     }
+
 }
