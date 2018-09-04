@@ -1221,7 +1221,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   EntID: 0
   currentRole: 0
-  playerLevel: 0
+  playerLevel: 1
   WeaponGrip: {fileID: 0}
   CurrentWeapon: {fileID: 114727275961219024}
   MyInventory: {fileID: 0}
