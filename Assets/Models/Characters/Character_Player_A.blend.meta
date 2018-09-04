@@ -1,7 +1,7 @@
 fileFormatVersion: 2
 guid: 97780edd6ee5d6748aeef154c89f5698
 ModelImporter:
-  serializedVersion: 22
+  serializedVersion: 23
   fileIDToRecycleName:
     100000: Armature
     100002: //RootNode
@@ -91,6 +91,7 @@ ModelImporter:
     7400042: Sword_Walk_Start
     9500000: //RootNode
     13700000: group3
+    2186277476908879412: ImportLogs
   externalObjects: {}
   materials:
     importMaterials: 1
@@ -846,6 +847,8 @@ ModelImporter:
     secondaryUVHardAngle: 88
     secondaryUVPackMargin: 4
     useFileScale: 1
+    previousCalculatedGlobalScale: 1
+    hasPreviousCalculatedGlobalScale: 0
   tangentSpace:
     normalSmoothAngle: 60
     normalImportMode: 0

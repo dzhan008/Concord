@@ -14,7 +14,7 @@ public class CharacterManager : MonoBehaviour {
     public List<GameObject> playerScreen;
 
     // TBC
-    private int playerScreenPosition = -450; //-500
+    private int playerScreenPosition = -200; //-500
     private float modelPosition = -4.5f;
 
     private bool[] playerExists = new bool[maxPlayerCount];
@@ -50,6 +50,14 @@ public class CharacterManager : MonoBehaviour {
                     Rigidbody r = playerModel.gameObject.transform.GetChild(j).GetComponent<Rigidbody>();
                     r.constraints &= ~RigidbodyConstraints.FreezePositionX;
                     r.constraints &= ~RigidbodyConstraints.FreezePositionZ;
+
+                    // Turn off player selection controls
+                    PlayerSelectionControls selectionScript = playerModel.gameObject.transform.GetChild(j).GetComponent<PlayerSelectionControls>();
+                    selectionScript.enabled = !selectionScript.enabled;
+
+                    // Turn on player controls
+                    PlayerControls playerScript = playerModel.gameObject.transform.GetChild(j).GetComponent<PlayerControls>();
+                    playerScript.enabled = !playerScript.enabled;
                 }
                 else
                 {
@@ -107,7 +115,7 @@ public class CharacterManager : MonoBehaviour {
         playerScreen.Add(newPlayerScreen);
         newPlayerScreen.transform.SetParent(selectionScreen.transform);
         newPlayerScreen.transform.localPosition = new Vector3(playerScreenPosition, 75, 0);
-        playerScreenPosition += 300;
+        playerScreenPosition += 150;
     }
 
 
