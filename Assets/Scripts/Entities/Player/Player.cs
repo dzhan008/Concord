@@ -16,7 +16,8 @@ using UnityEngine;
     {
         idle = 0,
         attacking = 1,
-        dead = 2
+        moving = 2,
+        dead = 3
     }
 
 public class Player : Entity {

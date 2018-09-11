@@ -37,25 +37,6 @@ public class PlayerControls : MonoBehaviour
     public float knockBackTime = 1;
     private float knockBackCounter;
 
-    //Variables checking for multiple inputs in attacks
-    private float timePassed;
-    public bool attacked = false;
-    private const float MIN_REACTION_TIME = 0.5f;
-    private const float THRESHOLD = 0.6f;
-    public int comboCounter
-    {
-        get
-        {
-            return _comboCounter;
-        }
-        set
-        {
-            _comboCounter = value;
-        }
-    }
-    private int _comboCounter = 0;
-
-
     //Top and Bottom check used in the Ground Check
     private Vector3 groundCheckTop
     {
@@ -159,7 +140,7 @@ public class PlayerControls : MonoBehaviour
 
     private void InputParse()
     {
-        if (attackFlag)
+        if (attackFlag && player.state != PlayerStates.moving)
             attack();
         if (player.state != PlayerStates.attacking)
             move();
@@ -178,6 +159,15 @@ public class PlayerControls : MonoBehaviour
             transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(dir), .15f);
         }
 
+        if(dir == Vector3.zero)
+        {
+            player.state = PlayerStates.idle;
+        }
+        else
+        {
+            player.state = PlayerStates.moving;
+        }
+
         //Scale the movement by movespeed and maintain current y velocity
         dir *= moveSpeed;
         dir.y = rigidBody.velocity.y;
@@ -193,6 +183,7 @@ public class PlayerControls : MonoBehaviour
 
     private void attack()
     {
+        //Attack based off of the type of attack
         anim.SetTrigger("Attack");
         if (attackType == controlMap.lightAttack)
         {
@@ -208,12 +199,10 @@ public class PlayerControls : MonoBehaviour
     public void DisableInput()
     {
         anim.SetBool("DisableTransitions", true);
-        //player.state = PlayerStates.attacking;
     }
 
     public void EnableInput()
     {
-        //player.state = PlayerStates.idle;
         anim.SetBool("DisableTransitions", false);
     }
 

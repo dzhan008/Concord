@@ -1,0 +1,205 @@
+fileFormatVersion: 2
+guid: 1abeb1addb4139041a5f9408142444d6
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: Armature
+    100002: //RootNode
+    100004: Fingers_L
+    100006: Fingers_R
+    100008: Foot_L
+    100010: Foot_R
+    100012: group3
+    100014: Hand_L
+    100016: Hand_R
+    100018: Head
+    100020: Hip_L
+    100022: Hip_R
+    100024: Lower_Arm_L
+    100026: Lower_Arm_R
+    100028: Lower_Body
+    100030: Lower_Leg_L
+    100032: Lower_Leg_R
+    100034: Neck
+    100036: Palm_L
+    100038: Palm_R
+    100040: Root
+    100042: Shoulder_L
+    100044: Shoulder_R
+    100046: Tail_bone
+    100048: Thumb_L
+    100050: Thumb_R
+    100052: Upper_Arm_L
+    100054: Upper_Arm_R
+    100056: Upper_Body
+    100058: Upper_Leg_L
+    100060: Upper_Leg_R
+    400000: Armature
+    400002: //RootNode
+    400004: Fingers_L
+    400006: Fingers_R
+    400008: Foot_L
+    400010: Foot_R
+    400012: group3
+    400014: Hand_L
+    400016: Hand_R
+    400018: Head
+    400020: Hip_L
+    400022: Hip_R
+    400024: Lower_Arm_L
+    400026: Lower_Arm_R
+    400028: Lower_Body
+    400030: Lower_Leg_L
+    400032: Lower_Leg_R
+    400034: Neck
+    400036: Palm_L
+    400038: Palm_R
+    400040: Root
+    400042: Shoulder_L
+    400044: Shoulder_R
+    400046: Tail_bone
+    400048: Thumb_L
+    400050: Thumb_R
+    400052: Upper_Arm_L
+    400054: Upper_Arm_R
+    400056: Upper_Body
+    400058: Upper_Leg_L
+    400060: Upper_Leg_R
+    2100000: characterMeshSG
+    4300000: group3
+    7400000: Default Take
+    7400002: Staff
+    7400004: Staff_Attack1
+    7400006: Staff_Attack1_End
+    7400008: Staff_Attack2
+    7400010: Staff_Attack2_End
+    7400012: Staff_Attack3
+    7400014: Staff_Attack3_End
+    7400016: Staff_Death
+    7400018: Staff_DoubleSpin
+    7400020: Staff_Flinch
+    7400022: Staff_Idle
+    7400024: Staff_Run_End
+    7400026: Staff_Run_Loop
+    7400028: Staff_Run_Start
+    7400030: Staff_SpinAttack
+    7400032: Staff_Walk_End
+    7400034: Staff_Walk_Loop
+    7400036: Staff_Walk_Start
+    7400038: Sword
+    7400040: Sword_Attack1
+    7400042: Sword_Attack1_End
+    7400044: Sword_Attack2
+    7400046: Sword_Attack2_End
+    7400048: Sword_Attack3
+    7400050: Sword_Attack3_End
+    7400052: Sword_Death
+    7400054: Sword_Flinch
+    7400056: Sword_Idle
+    7400058: Sword_Jump
+    7400060: Sword_Run_End
+    7400062: Sword_Run_Loop
+    7400064: Sword_Run_Start
+    7400066: Sword_ShieldBash
+    7400068: Sword_ShieldBash_End
+    7400070: Sword_StrongAttack_After_Attack2
+    7400072: Sword_StrongAttack_After_ShieldBash
+    7400074: Sword_Walk_End
+    7400076: Sword_Walk_Loop
+    7400078: Sword_Walk_Start
+    7400080: ThrowWeapon
+    7400082: ThrowWeapon_Death
+    7400084: ThrowWeapon_Flinch
+    7400086: ThrowWeapon_Idle
+    7400088: ThrowWeapon_Jump
+    7400090: ThrowWeapon_Run_End
+    7400092: ThrowWeapon_Run_Loop
+    7400094: ThrowWeapon_Run_Start
+    7400096: ThrowWeapon_Toss1
+    7400098: ThrowWeapon_Toss2
+    7400100: ThrowWeapon_Walk_End
+    7400102: ThrowWeapon_Walk_Loop
+    7400104: ThrowWeapon_Walk_Start
+    9500000: //RootNode
+    13700000: group3
+  externalObjects: {}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
